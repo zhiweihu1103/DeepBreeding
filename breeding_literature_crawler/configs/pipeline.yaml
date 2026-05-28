@@ -1,0 +1,44 @@
+# 全局流程配置
+# 作用：
+#   项目根路径以下的公共目录约定
+#   最终清洗输出文件
+#   报告输出文件
+#   是否保留 retrieval_word
+#   摘要最小长度
+#   DOI / title 去重开关
+#   默认日志级别
+
+version: 1
+
+project:
+  name: agri-breeding-literature-pipeline
+  language: zh-CN
+
+# 所有的文档目录
+paths:
+  raw_data_root: data/raw
+  intermediate_root: data/intermediate
+  private_root: data/private
+  cleaned_root: data/cleaned
+  report_root: docs/generated
+
+# 最终总数据集输出 生成 MarkDown 报告
+outputs:
+  final_clean_dataset: data/cleaned/all_breeding_papers_clean.jsonl
+  report_markdown: docs/generated/raw_inventory_report.md
+
+query:
+  build_mode: crop_x_technology
+  use_and_logic_for_local_search: true
+  attach_retrieval_word: true
+
+# 去重逻辑
+cleaning:
+  enable_doi_dedup: true  # DOI 强匹配
+  enable_title_dedup: true  # 标题规范化指纹匹配
+  merge_retrieval_words: true  # 多标签 retrieval_word 合并
+  min_abstract_length: 50
+  drop_empty_abstract: true
+
+logging:
+  level: INFO

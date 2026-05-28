@@ -1,0 +1,23 @@
+# 育种技术关键词表
+# 设置育种技术字段，统一检索组合构造逻辑
+# 后面扩充技术词时不改源码
+
+version: 1
+
+#
+
+technologies:
+  breeding_core:
+    - breeding
+    - germplasm
+    - QTL mapping
+    - GWAS
+    - marker-assisted selection
+    - CRISPR
+    - gene editing
+    - genomic selection
+
+  #后续可扩展更多词表
+  stress_related:
+
+  nutrition_related:

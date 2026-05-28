@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="860" viewBox="0 0 1280 860" role="img" aria-labelledby="title desc">
+  <title id="title">Agri Breeding Literature Pipeline Architecture</title>
+  <desc id="desc">Configuration-driven pipeline with entry scripts, source layer, raw data outputs, cleaning, and reporting.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f7f2; }
+      .panel { fill: #ffffff; stroke: #23313a; stroke-width: 2; rx: 18; ry: 18; }
+      .soft { fill: #eef5e8; stroke: #4d6b50; stroke-width: 2; rx: 14; ry: 14; }
+      .blue { fill: #e8f1f8; stroke: #47687f; stroke-width: 2; rx: 14; ry: 14; }
+      .gold { fill: #f7f0df; stroke: #8a6e2f; stroke-width: 2; rx: 14; ry: 14; }
+      .rose { fill: #f8eaea; stroke: #8c4d4d; stroke-width: 2; rx: 14; ry: 14; }
+      .text { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; fill: #1f2933; font-size: 22px; }
+      .small { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; fill: #334e68; font-size: 17px; }
+      .label { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; fill: #102a43; font-size: 28px; font-weight: 700; }
+      .line { stroke: #23313a; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dashed { stroke-dasharray: 8 8; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#23313a"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="860"/>
+
+  <text class="label" x="60" y="60">Agri Breeding Literature Pipeline</text>
+  <text class="small" x="60" y="92">配置驱动、source-specific、分阶段处理的农业育种文献工程</text>
+
+  <rect class="soft" x="60" y="130" width="250" height="155"/>
+  <text class="text" x="92" y="176">configs/</text>
+  <text class="small" x="92" y="208">crops.yaml</text>
+  <text class="small" x="92" y="234">technologies.yaml</text>
+  <text class="small" x="92" y="260">sources.yaml / pipeline.yaml</text>
+
+  <rect class="blue" x="370" y="130" width="260" height="155"/>
+  <text class="text" x="405" y="176">scripts/</text>
+  <text class="small" x="405" y="208">run_pubmed.py / run_arxiv.py</text>
+  <text class="small" x="405" y="234">run_*_local.py</text>
+  <text class="small" x="405" y="260">run_cleaning.py / run_report.py</text>
+
+  <rect class="panel" x="690" y="110" width="520" height="320"/>
+  <text class="text" x="725" y="154">src/agri_lit_pipeline/</text>
+
+  <rect class="soft" x="725" y="180" width="210" height="104"/>
+  <text class="small" x="748" y="212">Shared utilities</text>
+  <text class="small" x="748" y="240">config / query_builder</text>
+  <text class="small" x="748" y="266">tagging / normalize</text>
+
+  <rect class="blue" x="965" y="180" width="210" height="104"/>
+  <text class="small" x="1006" y="212">relevance.py</text>
+  <text class="small" x="989" y="240">xRxiv filtering rules</text>
+  <text class="small" x="987" y="266">bio relaxed / med-chem strict</text>
+
+  <rect class="gold" x="725" y="304" width="450" height="96"/>
+  <text class="small" x="748" y="336">source layer</text>
+  <text class="small" x="748" y="364">sources/pubmed.py | sources/arxiv.py | sources/xrxiv.py</text>
+  <text class="small" x="748" y="390">query conversion, retries, filtering, tagging handoff</text>
+
+  <rect class="rose" x="140" y="500" width="270" height="126"/>
+  <text class="text" x="177" y="545">data/raw/</text>
+  <text class="small" x="177" y="576">per-source JSONL results</text>
+  <text class="small" x="177" y="602">PubMed / arXiv / bio-med-chem Rxiv</text>
+
+  <rect class="soft" x="490" y="500" width="300" height="126"/>
+  <text class="text" x="530" y="545">cleaning.py</text>
+  <text class="small" x="530" y="576">normalize + abstract filter</text>
+  <text class="small" x="530" y="602">DOI-first dedup + retrieval_word merge</text>
+
+  <rect class="gold" x="860" y="500" width="300" height="126"/>
+  <text class="text" x="900" y="545">reporting.py</text>
+  <text class="small" x="900" y="576">crop × tech × source</text>
+  <text class="small" x="900" y="602">raw inventory markdown</text>
+
+  <rect class="blue" x="460" y="695" width="320" height="112"/>
+  <text class="text" x="505" y="740">data/cleaned/</text>
+  <text class="small" x="505" y="770">final master clean dataset</text>
+
+  <rect class="soft" x="870" y="695" width="320" height="112"/>
+  <text class="text" x="905" y="740">docs/generated/</text>
+  <text class="small" x="905" y="770">raw_inventory_report.md</text>
+
+  <line class="line" x1="310" y1="206" x2="370" y2="206"/>
+  <line class="line" x1="630" y1="206" x2="690" y2="206"/>
+  <line class="line" x1="950" y1="284" x2="950" y2="304"/>
+  <line class="line" x1="950" y1="400" x2="950" y2="460"/>
+  <line class="line" x1="950" y1="460" x2="275" y2="460"/>
+  <line class="line" x1="275" y1="460" x2="275" y2="500"/>
+
+  <line class="line" x1="410" y1="563" x2="490" y2="563"/>
+  <line class="line" x1="410" y1="563" x2="860" y2="563"/>
+  <line class="line" x1="640" y1="626" x2="640" y2="695"/>
+  <line class="line" x1="1010" y1="626" x2="1030" y2="695"/>
+
+  <path class="line dashed" d="M830 284 C 865 284, 900 284, 965 232"/>
+  <text class="small" x="790" y="302">xRxiv only</text>
+</svg>

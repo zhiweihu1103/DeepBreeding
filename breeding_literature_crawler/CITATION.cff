@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "Agri Breeding Literature Pipeline"
+type: software
+
+authors:
+  - family-names: "Hu"
+    given-names: "Zhiwei"
+    affiliation: "AgriMind Research Group, Shanxi Agricultural University"
+  - family-names: "Li"
+    given-names: "Zhongyuan"
+    affiliation: "AgriMind Research Group, Shanxi Agricultural University"
+
+abstract: >
+  A configurable research engineering codebase and workflow for multi-source
+  agricultural breeding literature retrieval, preprocessing, relevance filtering,
+  retrieval_word tagging, cleaning, deduplication, and raw inventory reporting.
+  The workflow covers PubMed, arXiv, bioRxiv, medRxiv, and chemRxiv. The
+  repository does not include full raw dumps, full cleaned corpora, or private
+  datasets.
+
+license: "Apache-2.0"
+version: "0.1.0"
+date-released: 2026-04-21
+
+repository-code: "https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler"
+url: "https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler"
+
+keywords:
+  - agriculture
+  - crop breeding
+  - plant breeding
+  - literature retrieval
+  - literature mining
+  - scholarly data pipeline
+  - pubmed
+  - arxiv
+  - biorxiv
+  - medrxiv
+  - chemrxiv

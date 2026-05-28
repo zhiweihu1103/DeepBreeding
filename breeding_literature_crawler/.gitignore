@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter / logs / temp
+.ipynb_checkpoints/
+*.log
+*.tmp
+*.temp
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Local caches
+.cache/
+pytest_cache/
+.mypy_cache/
+
+# Data outputs (do not open-source raw/cleaned corpora)
+data/raw/
+data/cleaned/
+data/intermediate/
+data/private/
+data/**/tmp/
+data/generated/
+data/**/*.jsonl
+
+docs/generated/
+
+# Allow sample data if you want to keep examples later
+# !data/sample/
+# !data/sample/*.jsonl
+
+# MkDocs build output
+site/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Dumps / local databases / large artifacts
+*.parquet
+*.feather
+*.pickle
+*.pkl
+*.db
+*.sqlite
+*.sqlite3
+
+# Model / checkpoints
+checkpoints/
+models/
+*.pt
+*.pth
+*.bin
+
+# Environment / secrets
+.env
+.env.*
+*.secret
+secrets.yaml
+secrets.yml
+
+
+.coverage
+htmlcov/
