@@ -2,16 +2,16 @@
 
 ## 1. Installation
 
-- create and activate the conda environment
+### create and activate the conda environment
 ```bash
 conda create -n mmoe python=3.12 -y
 conda activate lightrag
 ```
-- install lightrag
+### install lightrag
 ```
 pip install "lightrag-hku[api]"
 ```
-- configure environment
+### configure environment
 - Copy `env.example` and rename it to `.env` and configure the LLM settings in `.env`:
 
 ```bash
