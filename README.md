@@ -84,7 +84,9 @@ DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question
 
 ### 1. 📚 Literature Collection
 
-For details, please refer to the corresponding subfolder in this repository: [`Literature Collection/`](./Literature Collection/).
+```bash
+for details, please refer to the corresponding subfolder Literature Collection/ in this repository
+```
 
 ### 2. 🧬 Knowledge Graph Construction
 
