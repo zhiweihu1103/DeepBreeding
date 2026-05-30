@@ -37,29 +37,19 @@ DeepBreeding addresses this challenge by organizing breeding knowledge into reus
 
 The paper systematically retrieves and curates breeding-related literature from ``PubMed``, ``bioRxiv``, and other public resources. Search terms focus on ``gene expression``, ``transcription factors``, and ``breeding-relevant`` biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
 
-| Crop group | Species | Publications |
+| Crop Group | Species | Publications |
 |---|---|---:|
-| Staple crops | *Oryza sativa*, *Triticum aestivum*, *Zea mays* | 41,089 |
-| Minor cereals and related crops | *Avena sativa*, *Coix lacryma-jobi*, *Fagopyrum esculentum*, *Hordeum vulgare*, *Lens culinaris*, *Pisum sativum*, *Setaria italica*, *Sorghum bicolor*, *Vigna angularis*, *Vigna radiata*, *Vigna unguiculata* | 9,829 |
-
-Code for literature retrieval:
-
-```text
-https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler
-```
-
----
+| staple crops | *Oryza sativa*, *Triticum aestivum*, *Zea mays* | 41,089 |
+| minor crops | *Avena sativa*, *Coix lacryma-jobi*, *Fagopyrum esculentum*, *Hordeum vulgare*, *Lens culinaris*, *Pisum sativum*, *Setaria italica*, *Sorghum bicolor*, *Vigna angularis*, *Vigna radiata*, *Vigna unguiculata* | 9,829 |
 
 ## 🧬 Knowledge Graph Construction
 
-DeepBreeding uses a two-stage strategy integrating automated construction and proportional manual validation. The automated workflow includes document input, text chunking, information extraction, information merging, graph structuring, and graph storage. The paper describes extraction of genetic, phenotypic, regulatory, environmental, methodological, and experimental knowledge units. Entities, relations, and evidence descriptions are retained for downstream retrieval and traceable reasoning.
+The automated workflow includes ``document input``, ``text chunking``, ``information extraction``, ``information merging``, ``graph structuring``, and ``graph storage``.
 
-| Knowledge graph | Entities | Edges |
+| Knowledge Graph | Entities | Edges |
 |---|---:|---:|
-| Staple crop knowledge graph | 84,668 | 248,244 |
-| Minor cereal knowledge graph | 38,252 | 116,983 |
-
-Quality control samples 5% of entities and edges across entity and relation types to inspect entity boundaries, categories, relation semantics, and evidence consistency.
+| staple crop knowledge graph | 84,668 | 248,244 |
+| minor crop knowledge graph | 38,252 | 116,983 |
 
 ### Entity-Type Relation Counts
 
