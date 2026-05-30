@@ -142,9 +142,9 @@ If you use DeepBreeding, please cite:
 
 ## 🔗 Links
 
-- 🌐 Platform: https://deepbreeding.com
-- ⚙️ Platform framework: https://github.com/xerrors/Yuxi
-- 📚 Literature crawler: https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler
-- 🧬 LightRAG: https://github.com/HKUDS/LightRAG
-- 🏋️ LLaMA-Factory: https://github.com/hiyouga/LlamaFactory
-- 📊 lm-evaluation-harness: https://github.com/EleutherAI/lm-evaluation-harness
+- 🌐 [DeepBreeding Platform](https://deepbreeding.com) 
+- ⚙️ [Platform Framework](https://github.com/xerrors/Yuxi) 
+- 📚 [Literature Collection](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler)
+- 🧬 [Knowledge Graph Construction](https://github.com/HKUDS/LightRAG)
+- 🏋️ [Model Training](https://github.com/hiyouga/LlamaFactory)
+- 📊 [Model Evaluation](https://github.com/EleutherAI/lm-evaluation-harness)
