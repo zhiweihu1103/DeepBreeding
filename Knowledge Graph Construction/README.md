@@ -1,108 +1,173 @@
-<div align="center">
-  
-# 🌾 [DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation](https://deepbreeding.com)
+# Knowledge Graph Construction
 
-</div>
+This repository provides a simple example for building a knowledge graph with [LightRAG](https://github.com/HKUDS/LightRAG), using an OpenAI-compatible LLM API and Ollama-based `bge-m3` embeddings.
 
-## 🌱 Overview
+## 1. Environment
 
-Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records, limiting rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
+Activate the conda environment:
 
-DeepBreeding addresses this challenge by organizing breeding knowledge into reusable knowledge graphs, retrieving question-relevant evidence, distilling reasoning patterns into deployable small language models, and evaluating performance with breeding-oriented benchmark tasks.
-
-## 🧩 Core Modules
-
-| Module | Role | Implementation |
-|---|---|---|
-| ⚙️ Platform Framework | Provides the base framework for implementing the DeepBreeding platform and organizing the application workflow. | [Yuxi](https://github.com/xerrors/Yuxi) |
-| 📚 Literature Collection | Retrieves and curates staple crop and minor crop literatures for knowledge graph construction. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
-| 🧬 Knowledge Graph Construction | Converts literature and breeding records into entity-relation-evidence graphs for retrieval and traceable reasoning. | [LightRAG](https://github.com/HKUDS/LightRAG) |
-| 🏋️ Model Training | Distills LLM reasoning into deployable small language models through supervised fine-tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
-| 📊 Model Evaluation | Evaluates breeding knowledge reasoning across standardized benchmark tasks. | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
-
-## 📚 Literature Collection
-
-The paper systematically retrieves and curates breeding-related literature from ``PubMed``, ``bioRxiv``, and other public resources. Search terms focus on ``gene expression``, ``transcription factors``, and ``breeding-relevant`` biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
-
-| Crop Group | Species | Publications |
-|---|---|---:|
-| staple crops | *Oryza sativa*, *Triticum aestivum*, *Zea mays* | 41,089 |
-| minor crops | *Avena sativa*, *Coix lacryma-jobi*, *Fagopyrum esculentum*, *Hordeum vulgare*, *Lens culinaris*, *Pisum sativum*, *Setaria italica*, *Sorghum bicolor*, *Vigna angularis*, *Vigna radiata*, *Vigna unguiculata* | 9,829 |
-
-## 🧬 Knowledge Graph Construction
-
-The automated workflow includes ``document input``, ``text chunking``, ``information extraction``, ``information merging``, ``graph structuring``, and ``graph storage``.
-
-| Knowledge Graph | Entities | Edges |
-|---|---:|---:|
-| staple crop knowledge graph | 84,668 | 248,244 |
-| minor crop knowledge graph | 38,252 | 116,983 |
-
-| Source Entity Type | Staple Crop Knowledge Graph Outgoing Relations Count | Minor Crop Knowledge Graph Outgoing Relations Count |
-|---|---:|---:|
-| Gene | 121,767 | 51,739 |
-| Species | 52,856 | 26,954 |
-| Biological Process | 16,187 | 9,836 |
-| Phenotype | 16,900 | 4,116 |
-| Environmental Factor | 18,244 | 8,398 |
-| Experiment | 12,844 | 6,674 |
-| Molecular Marker | 2,930 | 4,376 |
-| Breeding Method | 3,701 | 4,349 |
-| Agronomic Practice | 1,868 | 337 |
-| Growth Stage | 947 | 204 |
-
-## 📊 Model Evaluation
-
-DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories. The evaluation compares General LLMs, Reasoning LLMs, General SLMs, and General SLMs enhanced with DeepBreeding.
-
-| Category | Tasks |
-|---|---|
-| Gene-Level Feature Identification | ``Gene Structural Domains``; ``Chromosomal Localization of Genes`` |
-| Regulatory Mechanism Interpretation | ``Cis-Regulatory Elements``; ``Trans-Acting Factors``; ``Functional Validation of Regulatory Elements`` |
-| Gene Function and Systems-Level Validation | ``Functional Genomics``; ``Systems Genetics``; ``Gain- and Loss-of-Function Validation`` |
-| Gene-Phenotype Association Reasoning | ``Association Between Homologous Genes and Phenotypes``; ``Gene Effects and Phenotypic Associations`` |
-
-| Model Group | Description |
-|---|---|
-| General LLMs | General-purpose LLM baselines without crop-breeding-specific adaptation. |
-| Reasoning LLMs | LLMs with explicit or enhanced reasoning mechanisms for complex problem decomposition and multi-step analysis. |
-| General SLMs | Lightweight small language models without domain-specific knowledge construction, retrieval, or distillation. |
-| General SLMs + DeepBreeding | Small language models enhanced with the crop breeding knowledge graph, knowledge retrieval, and knowledge distillation. |
-
-## 🚀 Quick Start
-
-### 1. 📚 Literature Collection
-
-refer to the corresponding subfolder [`Literature Collection/`](./Literature%20Collection/).
-
-### 2. 🧬 Knowledge Graph Construction
-
-refer to the corresponding subfolder [`Knowledge Graph Construction/`](./Knowledge%20Graph%20Construction/).
-
-### 3. 🏋️ Model Training
-
-refer to the corresponding subfolder [`Model Training/`](./Model%20Training/).
-
-### 4. 📊 Model Evaluation
-
-refer to the corresponding subfolder [`Model Evaluation/`](./Model%20Evaluation/).
-
-## 📝 Citation
-
-If you use DeepBreeding, please cite:
-
-```bibtex
-@article{hu2026deepbreeding,
-  title   = {DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation},
-  year    = {2026}
-}
+```bash
+conda create -n mmoe python=3.7 -y
+conda activate lightrag
 ```
 
-## 🔗 Links
+## 2. Installation
 
-- 🌐 [DeepBreeding Platform](https://deepbreeding.com) 
-- ⚙️ [Platform Framework](https://github.com/xerrors/Yuxi) 
-- 📚 [Literature Collection](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler)
-- 🧬 [Knowledge Graph Construction](https://github.com/HKUDS/LightRAG)
-- 🏋️ [Model Training](https://github.com/hiyouga/LlamaFactory)
-- 📊 [Model Evaluation](https://github.com/EleutherAI/lm-evaluation-harness)
+Download the LightRAG source code:
+
+```bash
+git clone https://github.com/HKUDS/LightRAG.git
+cd LightRAG
+```
+
+Install LightRAG with API support:
+
+```bash
+pip install "lightrag-hku[api]"
+```
+
+Copy `env.example` and rename it to `.env`:
+
+```bash
+cp env.example .env
+```
+
+Configure the LLM settings in `.env`:
+
+```bash
+LLM_BINDING=openai
+LLM_MODEL=xxx
+LLM_BINDING_HOST=xxx
+LLM_BINDING_API_KEY=xxx
+```
+
+Install the embedding model with Ollama:
+
+```bash
+ollama create bge-m3
+```
+
+Configure the embedding settings in `.env`:
+
+```bash
+EMBEDDING_BINDING=ollama
+EMBEDDING_MODEL=bge-m3:latest
+EMBEDDING_DIM=1024
+EMBEDDING_BINDING_HOST=http://localhost:11434
+```
+
+## 3. Build Knowledge Graph
+
+Create a Python script, for example `build_kg.py`:
+
+```python
+import os
+import asyncio
+
+from lightrag import LightRAG, QueryParam
+from lightrag.llm.openai import openai_complete_if_cache
+from lightrag.llm.ollama import ollama_embed
+from lightrag.utils import EmbeddingFunc
+from lightrag.kg.shared_storage import initialize_pipeline_status
+
+root_work_dir = "xxx"
+external_dataset_dir = "xxx"
+search_mode = "hybrid"  # naive, local, global, hybrid
+
+# LLM settings
+llm_model = "xxx"
+llm_api_key = "xxx"
+llm_api_url = "xxx"
+
+# Embedding settings
+embedding_dim = 1024
+embedding_max_token = 8192
+embedding_model_name = "bge-m3:latest"
+embedding_model_url = "http://localhost:11434"
+
+
+async def llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs) -> str:
+    return await openai_complete_if_cache(
+        llm_model,
+        prompt,
+        system_prompt=system_prompt,
+        history_messages=history_messages,
+        api_key=llm_api_key,
+        base_url=llm_api_url,
+        **kwargs,
+    )
+
+
+async def initialize_rag():
+    rag = LightRAG(
+        working_dir=root_work_dir,
+        llm_model_func=llm_model_func,
+        embedding_func=EmbeddingFunc(
+            embedding_dim=embedding_dim,
+            max_token_size=embedding_max_token,
+            func=lambda texts: ollama_embed(
+                texts,
+                embed_model=embedding_model_name,
+                host=embedding_model_url,
+            ),
+        ),
+        embedding_batch_num=64,
+        embedding_func_max_async=8,
+        llm_model_max_async=16,
+        chunk_token_size=4096,
+        chunk_overlap_token_size=50,
+        entity_extract_max_gleaning=1,
+        embedding_cache_config={
+            "enabled": True,
+            "similarity_threshold": 0.90,
+            "use_llm_check": False,
+        },
+    )
+
+    await rag.initialize_storages()
+    return rag
+
+
+async def main():
+    rag = None
+
+    try:
+        rag = await initialize_rag()
+        await initialize_pipeline_status()
+
+        with open(external_dataset_dir, "r", encoding="utf-8") as f:
+            await rag.ainsert(f.read())
+
+        query_param = QueryParam(
+            mode=search_mode,
+            user_prompt="Answer the following question only by providing the letter corresponding to the right option only.",
+        )
+
+        resp = await rag.aquery(
+            '"question": "The ESP cis-element discovered in Avena sativa within the 960 bp promoter upstream region of AsGlo1 has the sequence ACATGTCATCATGT. What role does it most likely play in gene expression?", "options": {"A": "1. endosperm; 2. seed storage protein;", "B": "1. sucrose signaling; 2. starch metabolism;", "C": "1. ABA; 2. drought; 3. salt;", "D": "1. dehydration; 2. salt; 3. cold;"}',
+            param=query_param,
+        )
+
+        print(resp)
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        if rag:
+            await rag.finalize_storages()
+
+
+if __name__ == "__main__":
+    if not os.path.exists(root_work_dir):
+        os.mkdir(root_work_dir)
+
+    asyncio.run(main())
+    print("\nDone!")
+```
+
+## 4. Run
+
+```bash
+python build_kg.py
+```
