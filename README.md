@@ -13,7 +13,7 @@
 - [Model Evaluation](#model-evaluation)
 - [Quick Start](#quick-start)
 - [Citation](#citation)
-- [Links](#links)
+- [Links](#Links)
 
 ## 🌱 Overview
 
