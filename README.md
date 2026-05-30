@@ -17,8 +17,6 @@
 - [Citation](#citation)
 - [Links](#links)
 
----
-
 ## 🌱 Overview
 
 Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records, limiting rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
