@@ -6,6 +6,8 @@
 
 [![Platform](https://img.shields.io/badge/Web-deepbreeding.com-1f77b4?style=for-the-badge&logo=googlechrome)](https://deepbreeding.com)
 
+---
+
 ## 🌱 Overview
 
 Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records. This fragmentation makes it difficult to integrate evidence for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
