@@ -1,14 +1,8 @@
 <div align="center">
 
-# 🌾 DeepBreeding
+# 🌾 [DeepBreeding](https://deepbreeding.com)
 
 ### A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation
-
-**DeepBreeding** generates structured, evidence-supported, and traceable crop breeding reports from breeding-related scientific questions.
-
-The platform framework is implemented based on [Yuxi](https://github.com/xerrors/Yuxi), and the reproducible research workflow integrates literature collection, knowledge graph construction, model training, and model evaluation.
-
-</div>
 
 ---
 
