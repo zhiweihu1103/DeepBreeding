@@ -49,11 +49,7 @@ The automated workflow includes ``document input``, ``text chunking``, ``informa
 | staple crop knowledge graph | 84,668 | 248,244 |
 | minor crop knowledge graph | 38,252 | 116,983 |
 
-### Entity-Type Relation Counts
-
-The following statistics are aggregated from `Supplemental Tables.xlsx`. Counts represent outgoing relations grouped by source entity type.
-
-| Source entity type | Staple crop KG outgoing relations | Minor cereal KG outgoing relations |
+| Source Entity Type | Staple Crop Knowledge Graph Outgoing Relations Count | Minor Crop Knowledge Graph Outgoing Relations Count |
 |---|---:|---:|
 | Gene | 121,767 | 51,739 |
 | Species | 52,856 | 26,954 |
@@ -65,36 +61,6 @@ The following statistics are aggregated from `Supplemental Tables.xlsx`. Counts 
 | Breeding Method | 3,701 | 4,349 |
 | Agronomic Practice | 1,868 | 337 |
 | Growth Stage | 947 | 204 |
-
-### Staple Crop KG Relation Counts by Source Type
-
-| Source entity type | Total outgoing relations | Target relation counts |
-|---|---:|---|
-| Gene | 121,767 | Gene: 78,691; Species: 10,190; Biological Process: 11,201; Phenotype: 7,422; Environmental Factor: 4,943; Experiment: 6,028; Molecular Marker: 1,619; Breeding Method: 1,017; Growth Stage: 656 |
-| Species | 52,856 | Gene: 29,444; Species: 8,888; Biological Process: 2,502; Phenotype: 3,144; Environmental Factor: 3,528; Experiment: 3,021; Molecular Marker: 734; Breeding Method: 635; Agronomic Practice: 786; Growth Stage: 174 |
-| Biological Process | 16,187 | Gene: 10,175; Species: 1,290; Biological Process: 2,005; Phenotype: 700; Environmental Factor: 787; Experiment: 842; Molecular Marker: 140; Breeding Method: 133; Agronomic Practice: 115 |
-| Phenotype | 16,900 | Gene: 9,564; Species: 1,862; Biological Process: 905; Phenotype: 1,970; Environmental Factor: 909; Experiment: 1,255; Molecular Marker: 325; Growth Stage: 110 |
-| Environmental Factor | 18,244 | Gene: 10,167; Species: 2,316; Biological Process: 1,216; Phenotype: 1,487; Environmental Factor: 1,746; Experiment: 648; Molecular Marker: 157; Agronomic Practice: 382; Growth Stage: 125 |
-| Experiment | 12,844 | Gene: 5,743; Species: 1,273; Biological Process: 1,013; Phenotype: 1,076; Environmental Factor: 388; Experiment: 2,556; Molecular Marker: 483; Breeding Method: 128; Growth Stage: 184 |
-| Molecular Marker | 2,930 | Gene: 1,597; Species: 320; Biological Process: 104; Phenotype: 307; Environmental Factor: 47; Molecular Marker: 457; Breeding Method: 86; Agronomic Practice: 8; Growth Stage: 4 |
-| Breeding Method | 3,701 | Gene: 2,219; Biological Process: 117; Phenotype: 233; Environmental Factor: 49; Experiment: 198; Molecular Marker: 163; Breeding Method: 659; Agronomic Practice: 21; Growth Stage: 42 |
-| Agronomic Practice | 1,868 | Gene: 579; Species: 300; Biological Process: 164; Phenotype: 319; Environmental Factor: 236; Experiment: 97; Molecular Marker: 10; Breeding Method: 22; Agronomic Practice: 125; Growth Stage: 16 |
-| Growth Stage | 947 | Species: 463; Biological Process: 74; Phenotype: 97; Environmental Factor: 62; Experiment: 8; Molecular Marker: 86; Breeding Method: 149; Agronomic Practice: 8 |
-
-### Minor Cereal KG Relation Counts by Source Type
-
-| Source entity type | Total outgoing relations | Target relation counts |
-|---|---:|---|
-| Gene | 51,739 | Gene: 29,539; Species: 4,830; Biological Process: 5,581; Phenotype: 1,956; Environmental Factor: 2,350; Experiment: 3,196; Molecular Marker: 2,242; Breeding Method: 1,731; Agronomic Practice: 114; Growth Stage: 200 |
-| Species | 26,954 | Gene: 13,017; Species: 4,845; Biological Process: 1,676; Phenotype: 997; Environmental Factor: 2,028; Experiment: 1,819; Molecular Marker: 1,084; Breeding Method: 1,238; Agronomic Practice: 191; Growth Stage: 59 |
-| Biological Process | 9,836 | Gene: 5,239; Species: 889; Biological Process: 1,706; Phenotype: 394; Environmental Factor: 439; Experiment: 411; Molecular Marker: 325; Breeding Method: 311; Agronomic Practice: 55; Growth Stage: 67 |
-| Phenotype | 4,116 | Gene: 1,850; Species: 478; Biological Process: 355; Phenotype: 544; Environmental Factor: 170; Experiment: 256; Molecular Marker: 223; Breeding Method: 156; Agronomic Practice: 72; Growth Stage: 12 |
-| Environmental Factor | 8,398 | Gene: 4,169; Species: 1,434; Biological Process: 702; Phenotype: 426; Environmental Factor: 846; Experiment: 282; Molecular Marker: 239; Breeding Method: 208; Agronomic Practice: 64; Growth Stage: 28 |
-| Experiment | 6,674 | Gene: 3,063; Species: 787; Biological Process: 460; Phenotype: 227; Environmental Factor: 211; Experiment: 1,168; Molecular Marker: 354; Breeding Method: 338; Agronomic Practice: 22; Growth Stage: 44 |
-| Molecular Marker | 4,376 | Gene: 1,884; Species: 472; Biological Process: 350; Phenotype: 251; Environmental Factor: 144; Experiment: 347; Molecular Marker: 713; Breeding Method: 183; Agronomic Practice: 20; Growth Stage: 12 |
-| Breeding Method | 4,349 | Gene: 1,899; Species: 576; Biological Process: 329; Phenotype: 145; Environmental Factor: 125; Experiment: 411; Molecular Marker: 335; Breeding Method: 491; Agronomic Practice: 19; Growth Stage: 19 |
-| Agronomic Practice | 337 | Gene: 68; Species: 60; Biological Process: 46; Phenotype: 74; Environmental Factor: 13; Experiment: 30; Molecular Marker: 12; Breeding Method: 10; Agronomic Practice: 24; Growth Stage: 0 |
-| Growth Stage | 204 | Gene: 100; Species: 16; Biological Process: 33; Phenotype: 12; Environmental Factor: 8; Experiment: 8; Molecular Marker: 7; Breeding Method: 4; Growth Stage: 16 |
 
 ## 📊 Model Evaluation
 
