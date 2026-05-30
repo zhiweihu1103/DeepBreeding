@@ -1,170 +1,137 @@
 <div align="center">
 
-# 🌾 DeepBreeding
+# DeepBreeding
 
 ### A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation
 
-[![Platform](https://img.shields.io/badge/Web-deepbreeding.com-1f77b4?style=for-the-badge&logo=googlechrome)](https://deepbreeding.com)
+<p>
+  <a href="#citation"><img src="https://img.shields.io/badge/Paper-DeepBreeding-2f6f4e?style=for-the-badge&logo=readme" alt="Paper"></a>
+  <a href="https://deepbreeding.com"><img src="https://img.shields.io/badge/Platform-deepbreeding.com-1f77b4?style=for-the-badge&logo=googlechrome" alt="Platform"></a>
+  <a href="https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler"><img src="https://img.shields.io/badge/Literature-Crawler-2563eb?style=for-the-badge" alt="Literature Crawler"></a>
+  <a href="https://github.com/HKUDS/LightRAG"><img src="https://img.shields.io/badge/KG-LightRAG-7c3aed?style=for-the-badge&logo=neo4j" alt="LightRAG"></a>
+  <a href="https://github.com/hiyouga/LlamaFactory"><img src="https://img.shields.io/badge/Training-LLaMA--Factory-f97316?style=for-the-badge&logo=huggingface" alt="LLaMA-Factory"></a>
+  <a href="https://github.com/EleutherAI/lm-evaluation-harness"><img src="https://img.shields.io/badge/Evaluation-lm--eval-0f766e?style=for-the-badge&logo=pytest" alt="lm-evaluation-harness"></a>
+</p>
+
+**DeepBreeding** generates structured, evidence-supported, and traceable crop breeding reports from breeding-related scientific questions.
+
+It integrates literature collection, knowledge graph construction, knowledge retrieval, knowledge distillation, and benchmark-based evaluation for interpretable crop breeding reasoning across staple crops and minor cereals.
+
+</div>
 
 ---
 
-## 🌱 Overview
+## Contents
 
-Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records. This fragmentation makes it difficult to integrate evidence for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
+- [Overview](#overview)
+- [At a Glance](#at-a-glance)
+- [Workflow](#workflow)
+- [Core Modules](#core-modules)
+- [Benchmark and Results](#benchmark-and-results)
+- [Repository Map](#repository-map)
+- [Quick Start](#quick-start)
+- [Citation](#citation)
 
-DeepBreeding addresses this challenge through a closed-loop workflow:
+---
+
+## Overview
+
+Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records. This fragmentation limits rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
+
+DeepBreeding addresses this challenge by organizing breeding knowledge into reusable knowledge graphs, retrieving question-relevant evidence, distilling reasoning patterns into deployable small language models, and evaluating performance with breeding-oriented benchmark tasks.
+
+---
+
+## At a Glance
+
+| Item | Value |
+|---|---:|
+| Staple crop publications | 41,089 |
+| Minor cereal publications | 9,829 |
+| Staple crop KG | 84,668 entities / 248,244 edges |
+| Minor cereal KG | 38,252 entities / 116,983 edges |
+| Benchmark tasks | 10 single-choice QA tasks |
+| Staple crop gain | 45.18% → 65.06% |
+| Minor cereal gain | 53.70% → 79.51% |
+
+---
+
+## Workflow
 
 ```mermaid
 flowchart LR
-    Q[🌾 User breeding question] --> L[📚 Literature and evidence collection]
-    L --> KG[🧬 Knowledge graph construction]
-    KG --> R[🔎 KG / PubMed / Web retrieval]
-    R --> T[🏋️ Instruction tuning and knowledge distillation]
-    T --> E[📊 Benchmark evaluation]
-    E --> O[🧾 Evidence-traceable breeding report]
+    A[User breeding question] --> B[Literature and evidence collection]
+    B --> C[Knowledge graph construction]
+    C --> D[KG / PubMed / Web retrieval]
+    D --> E[Instruction tuning and knowledge distillation]
+    E --> F[Benchmark evaluation]
+    F --> G[Evidence-traceable breeding report]
 ```
 
-The platform is designed around four core capabilities described in the paper:
-
-| Module | Icon | Purpose | Open-source component |
-|---|---:|---|---|
-| Literature retrieval | 📚 | Collect staple crop and minor cereal literature for knowledge graph construction | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
-| Knowledge graph construction | 🧬 | Convert breeding literature and records into searchable entity-relation-evidence graphs | [LightRAG](https://github.com/HKUDS/LightRAG) |
-| Model training | 🏋️ | Distill LLM reasoning into deployable small language models using instruction tuning | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
-| Model evaluation | 📊 | Evaluate breeding knowledge reasoning across benchmark tasks | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
+DeepBreeding reports are designed to include problem interpretation, integrated evidence, mechanistic analysis, validation pathways, and traceable evidence sources.
 
 ---
 
-## 🧾 What DeepBreeding Produces
+## Core Modules
 
-DeepBreeding generates structured breeding reports with:
+| Module | Role | Implementation |
+|---|---|---|
+| 📚 **Literature Collection** | Retrieve and curate breeding-related literature for staple crops and minor cereals. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
+| 🧬 **Knowledge Graph Construction** | Convert literature and breeding records into entity-relation-evidence graphs. | [LightRAG](https://github.com/HKUDS/LightRAG) |
+| 🏋️ **Model Training** | Distill LLM reasoning into deployable small language models with instruction tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
+| 📊 **Model Evaluation** | Evaluate breeding knowledge reasoning across standardized benchmark tasks. | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
 
-- 🎯 **Problem interpretation**: the breeding objective, crop context, and biological scope.
-- 🔎 **Integrated evidence**: retrieved evidence from knowledge graphs, PubMed, and web resources.
-- 🧬 **Mechanistic analysis**: gene function, regulation, phenotype association, and biological mechanism reasoning.
-- 🧪 **Validation pathways**: suggested experimental, molecular, population, and field validation routes.
-- 🔗 **Traceable sources**: literature, graph evidence, and online references supporting each conclusion.
+### 1. Literature Collection
 
----
+The paper systematically retrieves and curates breeding-related literature from PubMed, bioRxiv, and other public resources. Search terms focus on gene expression, transcription factors, and breeding-relevant biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
 
-## 📚 1. Literature Collection
-
-**Goal:** retrieve and curate breeding-related literature for staple crop and minor cereal knowledge graph construction.
-
-The paper reports systematic retrieval from PubMed, bioRxiv, and other public resources. Search terms focus on gene expression, transcription factors, and breeding-relevant biological evidence.
-
-### 🌾 Crop Scope
-
-**🌽 Staple crops**
-
-- *Oryza sativa*
-- *Triticum aestivum*
-- *Zea mays*
-
-**🌿 Minor cereals and related crops**
-
-- *Avena sativa*
-- *Coix lacryma-jobi*
-- *Fagopyrum esculentum*
-- *Hordeum vulgare*
-- *Lens culinaris*
-- *Pisum sativum*
-- *Setaria italica*
-- *Sorghum bicolor*
-- *Vigna angularis*
-- *Vigna radiata*
-- *Vigna unguiculata*
-
-### 📖 Literature Scale
-
-| Corpus | Publications |
-|---|---:|
-| Staple crops | 41,089 |
-| Minor cereals | 9,829 |
-
-The retrieval scope in the paper covers publications up to **December 1, 2025**.
-
-Code for this module is available at:
+| Crop group | Species |
+|---|---|
+| Staple crops | *Oryza sativa*, *Triticum aestivum*, *Zea mays* |
+| Minor cereals and related crops | *Avena sativa*, *Coix lacryma-jobi*, *Fagopyrum esculentum*, *Hordeum vulgare*, *Lens culinaris*, *Pisum sativum*, *Setaria italica*, *Sorghum bicolor*, *Vigna angularis*, *Vigna radiata*, *Vigna unguiculata* |
 
 ```text
 https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler
 ```
 
----
+### 2. Knowledge Graph Construction
 
-## 🧬 2. Knowledge Graph Construction
-
-**Goal:** organize heterogeneous crop breeding knowledge into structured, searchable, and evidence-preserving graphs.
-
-DeepBreeding uses an automated construction workflow inspired by GraphRAG principles and implemented with [LightRAG](https://github.com/HKUDS/LightRAG). The workflow integrates unstructured and semi-structured texts from literature abstracts and breeding-related records.
-
-### 🏗️ Construction Workflow
+DeepBreeding uses a two-stage strategy integrating automated construction and proportional manual validation. The automated workflow includes document input, text chunking, information extraction, information merging, graph structuring, and graph storage.
 
 ```mermaid
 flowchart TD
-    A[📄 Source documents] --> B[✂️ Text chunking]
-    B --> C[🧩 Entity / relation / evidence extraction]
-    C --> D[🔁 Information merging]
-    D --> E[🕸️ Graph structuring]
-    E --> F[💾 Graph storage]
-    F --> G[🔎 Retrieval-ready breeding knowledge graph]
+    A[Source documents] --> B[Text chunking]
+    B --> C[Entity, relation, and evidence extraction]
+    C --> D[Information merging]
+    D --> E[Graph structuring]
+    E --> F[Graph storage]
+    F --> G[Retrieval-ready knowledge graph]
 ```
 
-The paper describes extraction of major genetic, phenotypic, regulatory, environmental, methodological, and experimental knowledge units. Entities, relations, and evidence descriptions are retained to support downstream retrieval and traceable reasoning.
+The paper describes extraction of genetic, phenotypic, regulatory, environmental, methodological, and experimental knowledge units. Entities, relations, and evidence descriptions are retained for downstream retrieval and traceable reasoning.
 
-### 🕸️ Knowledge Graph Scale
+Quality control samples 5% of entities and edges across entity and relation types to inspect entity boundaries, categories, relation semantics, and evidence consistency.
 
-| Knowledge graph | Entities | Edges |
-|---|---:|---:|
-| Staple crop KG | 84,668 | 248,244 |
-| Minor cereal KG | 38,252 | 116,983 |
+### 3. Model Training
 
-### ✅ Quality Control
+DeepBreeding trains small language models through knowledge distillation and instruction tuning. GPT-5.2 is used in the paper to generate structured training samples containing a task instruction, breeding question, retrieved evidence, reasoning process, and reference answer.
 
-The paper uses proportional manual validation: 5% of entities and edges are randomly sampled across entity and relation types to inspect entity boundaries, categories, relation semantics, and consistency with supporting evidence.
-
----
-
-## 🏋️ 3. Model Training
-
-**Goal:** transfer crop-breeding reasoning ability from large language models into lightweight small language models for practical deployment.
-
-DeepBreeding trains small language models through knowledge distillation and instruction tuning. According to the paper, GPT-5.2 is used to generate structured training samples containing:
-
-- task instruction
-- breeding question
-- retrieved evidence
-- reasoning process
-- reference answer
-
-Training is performed with [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) using parameter-efficient LoRA adaptation.
-
-### ⚙️ Training Configuration Reported in the Paper
+Training is performed with [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) using LoRA.
 
 | Setting | Value |
 |---|---|
 | Adaptation method | LoRA |
 | Target modules | all linear modules |
-| LoRA rank | 8 |
-| LoRA alpha | 16 |
-| LoRA dropout | 0 |
+| LoRA rank / alpha / dropout | 8 / 16 / 0 |
 | Learning rate | 1.0e-4 |
 | Epochs | 3 |
 | Scheduler | cosine |
 | Warm-up ratio | 0.1 |
 | Precision | bfloat16 |
 
-The training objective is to enable small language models to generate breeding reports with evidence-supported reasoning while reducing deployment cost.
+### 4. Model Evaluation
 
----
-
-## 📊 4. Model Evaluation
-
-**Goal:** quantify whether DeepBreeding improves breeding knowledge understanding, evidence integration, and traceable reasoning.
-
-The evaluation workflow is implemented with [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness). The benchmark contains **10 single-choice question-answering tasks** across four knowledge categories.
-
-### 🧪 Benchmark Categories
+DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories.
 
 | Category | Tasks |
 |---|---|
@@ -173,29 +140,27 @@ The evaluation workflow is implemented with [lm-evaluation-harness](https://gith
 | Gene Function and Systems-Level Validation | Functional Genomics; Systems Genetics; Gain- and Loss-of-Function Validation |
 | Gene-Phenotype Association Reasoning | Association Between Homologous Genes and Phenotypes; Gene Effects and Phenotypic Associations |
 
-### 🤖 Model Groups
+The evaluation compares General LLMs, Reasoning LLMs, General SLMs, and General SLMs enhanced with DeepBreeding.
 
-| Group | Description |
-|---|---|
-| General LLMs | General-purpose LLM baselines without crop-breeding-specific adaptation |
-| Reasoning LLMs | LLMs with explicit or enhanced reasoning mechanisms |
-| General SLMs | Lightweight small language models without DeepBreeding enhancement |
-| General SLMs + DeepBreeding | Small language models enhanced with knowledge graph, retrieval, and distillation |
+---
 
-### 📈 Reported Benchmark Gains
+## Benchmark and Results
 
 | Benchmark | General SLMs | General SLMs + DeepBreeding | Gain |
 |---|---:|---:|---:|
 | Staple crops | 45.18% | 65.06% | +19.88 |
 | Minor cereals | 53.70% | 79.51% | +25.81 |
 
-These results show stronger gains in knowledge-sparse minor cereal scenarios, where structured retrieval and distilled reasoning help compensate for uneven literature coverage.
+Key observations from the paper:
+
+- DeepBreeding improves small language model performance in both staple crop and minor cereal benchmarks.
+- The gain is stronger in minor cereals, where literature coverage and species-specific knowledge are sparser.
+- Cross-task, cross-species, and cross-category analyses suggest transferable functional evidence, regulatory knowledge, and gene-phenotype association information.
+- Knowledge graphs preserve entities, relations, and evidence descriptions for traceable downstream reasoning.
 
 ---
 
-## 🗂️ Repository Map
-
-This repository is intended to provide reproducible entry points for the DeepBreeding workflow:
+## Repository Map
 
 ```text
 DeepBreeding/
@@ -207,36 +172,30 @@ DeepBreeding/
 └── README.md
 ```
 
-> Note: the literature crawler has already been released at `breeding_literature_crawler`. The knowledge graph, model training, and evaluation modules are organized around the external open-source frameworks linked above.
+> The literature crawler has already been released at `breeding_literature_crawler`. The knowledge graph, model training, and evaluation modules are organized around the external open-source frameworks linked above.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
-### 📚 1. Collect Literature
-
-Use the literature crawler to retrieve breeding-related records for target crops:
+### 1. Collect Literature
 
 ```bash
 git clone https://github.com/zhiweihu1103/DeepBreeding.git
 cd DeepBreeding/breeding_literature_crawler
 ```
 
-Follow the crawler-specific instructions to reproduce literature retrieval and abstract collection.
+Use the crawler-specific instructions to reproduce literature retrieval and abstract collection.
 
-### 🧬 2. Build the Knowledge Graph
-
-Install and configure LightRAG:
+### 2. Build the Knowledge Graph
 
 ```bash
 git clone https://github.com/HKUDS/LightRAG.git
 ```
 
-Use the curated literature abstracts and breeding records as source documents, then run the LightRAG-based pipeline for chunking, extraction, merging, graph structuring, and storage.
+Use curated literature abstracts and breeding records as source documents, then run the LightRAG-based workflow for chunking, extraction, merging, graph structuring, and storage.
 
-### 🏋️ 3. Train DeepBreeding Models
-
-Install LLaMA-Factory:
+### 3. Train DeepBreeding Models
 
 ```bash
 git clone https://github.com/hiyouga/LlamaFactory.git
@@ -244,9 +203,7 @@ git clone https://github.com/hiyouga/LlamaFactory.git
 
 Prepare instruction-tuning samples with retrieved evidence and reference answers, then run LoRA-based supervised fine-tuning using the hyperparameters reported above.
 
-### 📊 4. Evaluate Models
-
-Install lm-evaluation-harness:
+### 4. Evaluate Models
 
 ```bash
 git clone https://github.com/EleutherAI/lm-evaluation-harness.git
@@ -256,17 +213,7 @@ Register the 10 DeepBreeding benchmark tasks, run inference over candidate model
 
 ---
 
-## ✨ Key Findings
-
-- DeepBreeding links knowledge organization, retrieval, model adaptation, and evaluation into a closed-loop framework for crop breeding report generation.
-- Knowledge graph construction preserves entities, relations, and evidence descriptions for traceable downstream reasoning.
-- Knowledge-enhanced small language models substantially improve performance over general SLM baselines.
-- Minor cereal benchmarks benefit especially from DeepBreeding, reflecting the value of retrieval and structured knowledge in sparse-evidence settings.
-- Cross-task, cross-species, and cross-category analyses suggest that functional evidence, regulatory knowledge, and gene-phenotype associations can transfer across breeding contexts.
-
----
-
-## 📝 Citation
+## Citation
 
 If you use DeepBreeding, please cite:
 
@@ -281,10 +228,13 @@ If you use DeepBreeding, please cite:
 
 ---
 
-## 🔗 Links
+## Links
 
-- 🌐 Platform: https://deepbreeding.com
-- 📚 Literature crawler: https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler
-- 🧬 LightRAG: https://github.com/HKUDS/LightRAG
-- 🏋️ LLaMA-Factory: https://github.com/hiyouga/LlamaFactory
-- 📊 lm-evaluation-harness: https://github.com/EleutherAI/lm-evaluation-harness
+| Resource | URL |
+|---|---|
+| Platform | https://deepbreeding.com |
+| Literature crawler | https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler |
+| LightRAG | https://github.com/HKUDS/LightRAG |
+| LLaMA-Factory | https://github.com/hiyouga/LlamaFactory |
+| lm-evaluation-harness | https://github.com/EleutherAI/lm-evaluation-harness |
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
