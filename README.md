@@ -23,16 +23,14 @@ Crop breeding knowledge is scattered across scientific literature, public databa
 
 DeepBreeding addresses this challenge by organizing breeding knowledge into reusable knowledge graphs, retrieving question-relevant evidence, distilling reasoning patterns into deployable small language models, and evaluating performance with breeding-oriented benchmark tasks.
 
----
-
 ## 🧩 Core Modules
 
 | Module | Role | Implementation |
 |---|---|---|
 | ⚙️ Platform Framework | Provides the base framework for implementing the DeepBreeding platform and organizing the application workflow. | [Yuxi](https://github.com/xerrors/Yuxi) |
-| 📚 Literature Collection | Retrieves and curates staple crop and minor cereal literature for knowledge graph construction. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
+| 📚 Literature Collection | Retrieves and curates staple crop and minor crop literatures for knowledge graph construction. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
 | 🧬 Knowledge Graph Construction | Converts literature and breeding records into entity-relation-evidence graphs for retrieval and traceable reasoning. | [LightRAG](https://github.com/HKUDS/LightRAG) |
-| 🏋️ Model Training | Distills LLM reasoning into deployable small language models through instruction tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
+| 🏋️ Model Training | Distills LLM reasoning into deployable small language models through supervised fine-tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
 | 📊 Model Evaluation | Evaluates breeding knowledge reasoning across standardized benchmark tasks. | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
 
 ---
