@@ -6,7 +6,7 @@
 
 ## Contents
 
-- [Overview](#overview)
+- [Overview](#Overview)
 - [Core Modules](#core-modules)
 - [Literature Collection](#literature-collection)
 - [Knowledge Graph Construction](#knowledge-graph-construction)
