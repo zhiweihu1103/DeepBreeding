@@ -2,16 +2,16 @@
 
 ## 1. Installation
 
-1. create and activate the conda environment
+- create and activate the conda environment
 ```bash
 conda create -n mmoe python=3.12 -y
 conda activate lightrag
 ```
-2. install lightrag
+- install lightrag
 ```
 pip install "lightrag-hku[api]"
 ```
-3. configure environment
+- configure environment
 - Copy `env.example` and rename it to `.env` and configure the LLM settings in `.env`:
 
 ```bash
@@ -36,7 +36,7 @@ EMBEDDING_DIM=1024
 EMBEDDING_BINDING_HOST=http://localhost:11434
 ```
 
-## 3. Build Knowledge Graph
+## 2. Build Knowledge Graph
 
 ```bash
 python build_kg.py
