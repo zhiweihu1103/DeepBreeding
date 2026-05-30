@@ -88,21 +88,15 @@ refer to the corresponding subfolder [`Literature Collection/`](./Literature%20C
 
 ### 2. 🧬 Knowledge Graph Construction
 
-```bash
-git clone https://github.com/HKUDS/LightRAG.git
-```
+refer to the corresponding subfolder [`Knowledge Graph Construction/`](./Knowledge%20Graph%20Construction/).
 
 ### 3. 🏋️ Model Training
 
-```bash
-git clone https://github.com/hiyouga/LlamaFactory.git
-```
+refer to the corresponding subfolder [`Model Training/`](./Model%20Training/).
 
 ### 4. 📊 Model Evaluation
 
-```bash
-git clone https://github.com/EleutherAI/lm-evaluation-harness.git
-```
+refer to the corresponding subfolder [`Model Evaluation/`](./Model%20Evaluation/).
 
 ## 📝 Citation
 
