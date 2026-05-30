@@ -4,11 +4,7 @@
 
 ### A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation
 
-[![Paper](https://img.shields.io/badge/Paper-DeepBreeding-2f6f4e?style=for-the-badge&logo=readme)](#citation)
 [![Platform](https://img.shields.io/badge/Web-deepbreeding.com-1f77b4?style=for-the-badge&logo=googlechrome)](https://deepbreeding.com)
-[![Knowledge Graph](https://img.shields.io/badge/Knowledge_Graph-LightRAG-7c3aed?style=for-the-badge&logo=neo4j)](https://github.com/HKUDS/LightRAG)
-[![Training](https://img.shields.io/badge/Training-LLaMA--Factory-f97316?style=for-the-badge&logo=huggingface)](https://github.com/hiyouga/LlamaFactory)
-[![Evaluation](https://img.shields.io/badge/Evaluation-lm--eval-0f766e?style=for-the-badge&logo=pytest)](https://github.com/EleutherAI/lm-evaluation-harness)
 
 **DeepBreeding** is an AI-driven framework for generating structured, evidence-supported, and traceable crop breeding reports from breeding-related scientific questions.
 
