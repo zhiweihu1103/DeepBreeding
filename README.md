@@ -1,10 +1,8 @@
 <div align="center">
-
 # 🌾 [DeepBreeding](https://deepbreeding.com)
-
 ### A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation
+</div>
 
----
 
 ## Contents
 
