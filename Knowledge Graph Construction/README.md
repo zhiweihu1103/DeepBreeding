@@ -4,7 +4,7 @@
 
 ### create and activate the conda environment
 ```bash
-conda create -n mmoe python=3.12 -y
+conda create -n deepbreeding_kgc python=3.12 -y
 conda activate deepbreeding_kgc
 ```
 ### install lightrag
