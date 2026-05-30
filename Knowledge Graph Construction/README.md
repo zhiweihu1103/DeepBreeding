@@ -67,6 +67,6 @@ python build_kg.py
 | `nodes.json`          | Stores all entities without type-based classification. |
 | `paper_abstracts.txt` | Stores all literature abstract information.            |
 
-## 5. Knowledge Graph Download
+## 5. Knowledge Graph Download (Google Drive Link)
 - [Staple Crop Knowledge Graph](https://drive.google.com/drive/folders/1UIwu8zh8kVBqbex9yqlvsb0kLi-clsvH?usp=sharing)
 - [Minor Crop Knowledge Graph](https://drive.google.com/drive/folders/1HxeVq4iLdriLdVILlQULnMaBxXjjSvhs?usp=sharing)
