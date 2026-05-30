@@ -35,7 +35,7 @@ DeepBreeding addresses this challenge by organizing breeding knowledge into reus
 
 ## 📚 Literature Collection
 
-The paper systematically retrieves and curates breeding-related literature from PubMed, bioRxiv, and other public resources. Search terms focus on gene expression, transcription factors, and breeding-relevant biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
+The paper systematically retrieves and curates breeding-related literature from ``PubMed``, bioRxiv, and other public resources. Search terms focus on gene expression, transcription factors, and breeding-relevant biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
 
 | Crop group | Species | Publications |
 |---|---|---:|
