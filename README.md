@@ -82,31 +82,23 @@ DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question
 
 ## 🚀 Quick Start
 
-### 1. ⚙️ DeepBreeding Platform
+### 1. 📚 Literature Collection
 
-```bash
-git clone https://github.com/xerrors/Yuxi.git
-```
+For details, please refer to the corresponding subfolder in this repository: [`Literature Collection/`](./Literature Collection/).
 
-### 2. 📚 Literature Collection
-
-```bash
-please see branch Literature Collection
-```
-
-### 3. 🧬 Knowledge Graph Construction
+### 2. 🧬 Knowledge Graph Construction
 
 ```bash
 git clone https://github.com/HKUDS/LightRAG.git
 ```
 
-### 4. 🏋️ Model Training
+### 3. 🏋️ Model Training
 
 ```bash
 git clone https://github.com/hiyouga/LlamaFactory.git
 ```
 
-### 5. 📊 Model Evaluation
+### 4. 📊 Model Evaluation
 
 ```bash
 git clone https://github.com/EleutherAI/lm-evaluation-harness.git
