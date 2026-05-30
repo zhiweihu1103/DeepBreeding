@@ -82,48 +82,35 @@ DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question
 
 ## 🚀 Quick Start
 
-### 1. ⚙️ Platform Framework
+### 1. ⚙️ DeepBreeding Platform
 
 ```bash
 git clone https://github.com/xerrors/Yuxi.git
 ```
 
-Use Yuxi as the base framework for implementing and organizing the DeepBreeding platform.
-
-### 2. 📚 Collect Literature
+### 2. 📚 Literature Collection
 
 ```bash
-git clone https://github.com/zhiweihu1103/DeepBreeding.git
-cd DeepBreeding/breeding_literature_crawler
+please see branch Literature Collection
 ```
 
-Use the crawler-specific instructions to reproduce literature retrieval and abstract collection.
-
-### 3. 🧬 Build the Knowledge Graph
+### 3. 🧬 Knowledge Graph Construction
 
 ```bash
 git clone https://github.com/HKUDS/LightRAG.git
 ```
 
-Use curated literature abstracts and breeding records as source documents, then run the LightRAG-based workflow for chunking, extraction, merging, graph structuring, and storage.
-
-### 4. 🏋️ Train DeepBreeding Models
+### 4. 🏋️ Model Training
 
 ```bash
 git clone https://github.com/hiyouga/LlamaFactory.git
 ```
 
-Prepare instruction-tuning samples with retrieved evidence and reference answers, then run LoRA-based supervised fine-tuning using the hyperparameters reported above.
-
-### 5. 📊 Evaluate Models
+### 5. 📊 Model Evaluation
 
 ```bash
 git clone https://github.com/EleutherAI/lm-evaluation-harness.git
 ```
-
-Register the 10 DeepBreeding benchmark tasks, run inference over candidate models, and compute accuracy with unified task instructions and answer-matching rules.
-
----
 
 ## 📝 Citation
 
@@ -132,13 +119,9 @@ If you use DeepBreeding, please cite:
 ```bibtex
 @article{hu2026deepbreeding,
   title   = {DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation},
-  author  = {Hu, Zhiwei and Yang, Yi and Guti\\'errez Basulto, V\\'ictor and Deng, Yuanpei and Yang, Senjie and Yan, Zhichao and Li, Ru and Xie, Qianqian and Pan, Jeff Z. and Gao, Jianhua and Kong, Zhaosheng},
-  year    = {2026},
-  note    = {Manuscript}
+  year    = {2026}
 }
 ```
-
----
 
 ## 🔗 Links
 
