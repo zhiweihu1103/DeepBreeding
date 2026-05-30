@@ -41,6 +41,7 @@ EMBEDDING_BINDING_HOST=http://localhost:11434
 ```bash
 python build_kg.py
 ```
+
 ## 3. Parameter Description
 
 | Parameter              | Description                                                                                                     | Example                       |
@@ -55,3 +56,13 @@ python build_kg.py
 | `embedding_max_token`  | Maximum token length accepted by the embedding model.                                                           | `8192`                        |
 | `embedding_model_name` | Name of the embedding model served by Ollama.                                                                   | `"bge-m3:latest"`             |
 | `embedding_model_url`  | Ollama service address for embedding generation.                                                                | `"http://localhost:11434"`    |
+
+## 4. Knowledge Graph Files
+
+| File                  | Description                                            |
+| --------------------- | ------------------------------------------------------ |
+| `edges_by_types.json` | Stores edges grouped by different edge types.          |
+| `edges.json`          | Stores all edges without type-based classification.    |
+| `nodes_by_types.json` | Stores entities grouped by different entity types.     |
+| `nodes.json`          | Stores all entities without type-based classification. |
+| `paper_abstracts.txt` | Stores all literature abstract information.            |
