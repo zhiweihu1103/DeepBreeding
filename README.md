@@ -98,58 +98,23 @@ The following statistics are aggregated from `Supplemental Tables.xlsx`. Counts 
 | Agronomic Practice | 337 | Gene: 68; Species: 60; Biological Process: 46; Phenotype: 74; Environmental Factor: 13; Experiment: 30; Molecular Marker: 12; Breeding Method: 10; Agronomic Practice: 24; Growth Stage: 0 |
 | Growth Stage | 204 | Gene: 100; Species: 16; Biological Process: 33; Phenotype: 12; Environmental Factor: 8; Experiment: 8; Molecular Marker: 7; Breeding Method: 4; Growth Stage: 16 |
 
----
-
-## 🏋️ Model Training
-
-DeepBreeding trains small language models through knowledge distillation and instruction tuning. GPT-5.2 is used in the paper to generate structured training samples containing a task instruction, breeding question, retrieved evidence, reasoning process, and reference answer. Training is performed with [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) using LoRA.
-
-| Setting | Value |
-|---|---|
-| Adaptation method | LoRA |
-| Target modules | all linear modules |
-| LoRA rank / alpha / dropout | 8 / 16 / 0 |
-| Learning rate | 1.0e-4 |
-| Epochs | 3 |
-| Scheduler | cosine |
-| Warm-up ratio | 0.1 |
-| Precision | bfloat16 |
-
----
-
 ## 📊 Model Evaluation
 
 DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories. The evaluation compares General LLMs, Reasoning LLMs, General SLMs, and General SLMs enhanced with DeepBreeding.
 
 | Category | Tasks |
 |---|---|
-| Gene-Level Feature Identification | Gene Structural Domains; Chromosomal Localization of Genes |
-| Regulatory Mechanism Interpretation | Cis-Regulatory Elements; Trans-Acting Factors; Functional Validation of Regulatory Elements |
-| Gene Function and Systems-Level Validation | Functional Genomics; Systems Genetics; Gain- and Loss-of-Function Validation |
-| Gene-Phenotype Association Reasoning | Association Between Homologous Genes and Phenotypes; Gene Effects and Phenotypic Associations |
+| Gene-Level Feature Identification | ``Gene Structural Domains``; ``Chromosomal Localization of Genes`` |
+| Regulatory Mechanism Interpretation | ``Cis-Regulatory Elements``; ``Trans-Acting Factors``; ``Functional Validation of Regulatory Elements`` |
+| Gene Function and Systems-Level Validation | ``Functional Genomics``; ``Systems Genetics``; ``Gain- and Loss-of-Function Validation`` |
+| Gene-Phenotype Association Reasoning | ``Association Between Homologous Genes and Phenotypes``; ``Gene Effects and Phenotypic Associations`` |
 
-| Model group | Description |
+| Model Group | Description |
 |---|---|
 | General LLMs | General-purpose LLM baselines without crop-breeding-specific adaptation. |
 | Reasoning LLMs | LLMs with explicit or enhanced reasoning mechanisms for complex problem decomposition and multi-step analysis. |
 | General SLMs | Lightweight small language models without domain-specific knowledge construction, retrieval, or distillation. |
 | General SLMs + DeepBreeding | Small language models enhanced with the crop breeding knowledge graph, knowledge retrieval, and knowledge distillation. |
-
----
-
-## 🗂️ Repository Map
-
-```text
-DeepBreeding/
-├── breeding_literature_crawler/      # Literature retrieval for KG construction
-├── knowledge_graph/                  # LightRAG-based KG construction workflow
-├── training/                         # LLaMA-Factory configs and training scripts
-├── evaluation/                       # lm-evaluation-harness tasks and evaluation scripts
-├── data/                             # KG data, benchmark data, and source data links
-└── README.md
-```
-
----
 
 ## 🚀 Quick Start
 
