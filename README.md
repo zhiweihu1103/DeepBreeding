@@ -1,6 +1,6 @@
 <div align="center">
 
-# DeepBreeding
+# 🌾 DeepBreeding
 
 ### A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation
 
@@ -27,7 +27,7 @@ The platform framework is implemented based on [Yuxi](https://github.com/xerrors
 
 ---
 
-## Overview
+## 🌱 Overview
 
 Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records, limiting rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
 
@@ -35,19 +35,19 @@ DeepBreeding addresses this challenge by organizing breeding knowledge into reus
 
 ---
 
-## Core Modules
+## 🧩 Core Modules
 
 | Module | Role | Implementation |
 |---|---|---|
-| Platform Framework | Provides the base framework for implementing the DeepBreeding platform and organizing the application workflow. | [Yuxi](https://github.com/xerrors/Yuxi) |
-| Literature Collection | Retrieves and curates staple crop and minor cereal literature for knowledge graph construction. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
-| Knowledge Graph Construction | Converts literature and breeding records into entity-relation-evidence graphs for retrieval and traceable reasoning. | [LightRAG](https://github.com/HKUDS/LightRAG) |
-| Model Training | Distills LLM reasoning into deployable small language models through instruction tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
-| Model Evaluation | Evaluates breeding knowledge reasoning across standardized benchmark tasks. | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
+| ⚙️ Platform Framework | Provides the base framework for implementing the DeepBreeding platform and organizing the application workflow. | [Yuxi](https://github.com/xerrors/Yuxi) |
+| 📚 Literature Collection | Retrieves and curates staple crop and minor cereal literature for knowledge graph construction. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
+| 🧬 Knowledge Graph Construction | Converts literature and breeding records into entity-relation-evidence graphs for retrieval and traceable reasoning. | [LightRAG](https://github.com/HKUDS/LightRAG) |
+| 🏋️ Model Training | Distills LLM reasoning into deployable small language models through instruction tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
+| 📊 Model Evaluation | Evaluates breeding knowledge reasoning across standardized benchmark tasks. | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
 
 ---
 
-## Literature Collection
+## 📚 Literature Collection
 
 The paper systematically retrieves and curates breeding-related literature from PubMed, bioRxiv, and other public resources. Search terms focus on gene expression, transcription factors, and breeding-relevant biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
 
@@ -64,7 +64,7 @@ https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawl
 
 ---
 
-## Knowledge Graph Construction
+## 🧬 Knowledge Graph Construction
 
 DeepBreeding uses a two-stage strategy integrating automated construction and proportional manual validation. The automated workflow includes document input, text chunking, information extraction, information merging, graph structuring, and graph storage. The paper describes extraction of genetic, phenotypic, regulatory, environmental, methodological, and experimental knowledge units. Entities, relations, and evidence descriptions are retained for downstream retrieval and traceable reasoning.
 
@@ -124,7 +124,7 @@ The following statistics are aggregated from `Supplemental Tables.xlsx`. Counts 
 
 ---
 
-## Model Training
+## 🏋️ Model Training
 
 DeepBreeding trains small language models through knowledge distillation and instruction tuning. GPT-5.2 is used in the paper to generate structured training samples containing a task instruction, breeding question, retrieved evidence, reasoning process, and reference answer. Training is performed with [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) using LoRA.
 
@@ -141,7 +141,7 @@ DeepBreeding trains small language models through knowledge distillation and ins
 
 ---
 
-## Model Evaluation
+## 📊 Model Evaluation
 
 DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories. The evaluation compares General LLMs, Reasoning LLMs, General SLMs, and General SLMs enhanced with DeepBreeding.
 
@@ -161,7 +161,7 @@ DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question
 
 ---
 
-## Repository Map
+## 🗂️ Repository Map
 
 ```text
 DeepBreeding/
@@ -175,9 +175,9 @@ DeepBreeding/
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
-### 1. Platform Framework
+### 1. ⚙️ Platform Framework
 
 ```bash
 git clone https://github.com/xerrors/Yuxi.git
@@ -185,7 +185,7 @@ git clone https://github.com/xerrors/Yuxi.git
 
 Use Yuxi as the base framework for implementing and organizing the DeepBreeding platform.
 
-### 2. Collect Literature
+### 2. 📚 Collect Literature
 
 ```bash
 git clone https://github.com/zhiweihu1103/DeepBreeding.git
@@ -194,7 +194,7 @@ cd DeepBreeding/breeding_literature_crawler
 
 Use the crawler-specific instructions to reproduce literature retrieval and abstract collection.
 
-### 3. Build the Knowledge Graph
+### 3. 🧬 Build the Knowledge Graph
 
 ```bash
 git clone https://github.com/HKUDS/LightRAG.git
@@ -202,7 +202,7 @@ git clone https://github.com/HKUDS/LightRAG.git
 
 Use curated literature abstracts and breeding records as source documents, then run the LightRAG-based workflow for chunking, extraction, merging, graph structuring, and storage.
 
-### 4. Train DeepBreeding Models
+### 4. 🏋️ Train DeepBreeding Models
 
 ```bash
 git clone https://github.com/hiyouga/LlamaFactory.git
@@ -210,7 +210,7 @@ git clone https://github.com/hiyouga/LlamaFactory.git
 
 Prepare instruction-tuning samples with retrieved evidence and reference answers, then run LoRA-based supervised fine-tuning using the hyperparameters reported above.
 
-### 5. Evaluate Models
+### 5. 📊 Evaluate Models
 
 ```bash
 git clone https://github.com/EleutherAI/lm-evaluation-harness.git
@@ -220,7 +220,7 @@ Register the 10 DeepBreeding benchmark tasks, run inference over candidate model
 
 ---
 
-## Citation
+## 📝 Citation
 
 If you use DeepBreeding, please cite:
 
@@ -235,11 +235,11 @@ If you use DeepBreeding, please cite:
 
 ---
 
-## Links
+## 🔗 Links
 
-- Platform: https://deepbreeding.com
-- Platform framework: https://github.com/xerrors/Yuxi
-- Literature crawler: https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler
-- LightRAG: https://github.com/HKUDS/LightRAG
-- LLaMA-Factory: https://github.com/hiyouga/LlamaFactory
-- lm-evaluation-harness: https://github.com/EleutherAI/lm-evaluation-harness
+- 🌐 Platform: https://deepbreeding.com
+- ⚙️ Platform framework: https://github.com/xerrors/Yuxi
+- 📚 Literature crawler: https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler
+- 🧬 LightRAG: https://github.com/HKUDS/LightRAG
+- 🏋️ LLaMA-Factory: https://github.com/hiyouga/LlamaFactory
+- 📊 lm-evaluation-harness: https://github.com/EleutherAI/lm-evaluation-harness
