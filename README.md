@@ -6,14 +6,6 @@
 
 [![Platform](https://img.shields.io/badge/Web-deepbreeding.com-1f77b4?style=for-the-badge&logo=googlechrome)](https://deepbreeding.com)
 
-**DeepBreeding** is an AI-driven framework for generating structured, evidence-supported, and traceable crop breeding reports from breeding-related scientific questions.
-
-It integrates literature collection, knowledge graph construction, knowledge retrieval, knowledge distillation, and benchmark-based evaluation to support interpretable crop breeding reasoning across staple crops and minor cereals.
-
-</div>
-
----
-
 ## 🌱 Overview
 
 Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records. This fragmentation makes it difficult to integrate evidence for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
