@@ -12,7 +12,7 @@ conda activate deepbreeding_kgc
 pip install "lightrag-hku[api]"
 ```
 ### configure environment
-- Copy `env.example` and rename it to `.env` and configure the LLM settings in `.env`:
+- copy `env.example` and rename it to `.env` and configure the LLM settings in `.env`:
 
 ```bash
 LLM_BINDING=openai
@@ -21,13 +21,13 @@ LLM_BINDING_HOST=xxx
 LLM_BINDING_API_KEY=xxx
 ```
 
-- Install the embedding model with Ollama:
+- install the embedding model with Ollama:
 
 ```bash
 ollama create bge-m3
 ```
 
-- Configure the embedding settings in `.env`:
+- configure the embedding settings in `.env`:
 
 ```bash
 EMBEDDING_BINDING=ollama
