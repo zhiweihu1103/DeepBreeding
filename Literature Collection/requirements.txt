@@ -1,0 +1,2 @@
+paperscraper==0.3.6
+pyyaml>=6.0

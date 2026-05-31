@@ -1,0 +1,45 @@
+# 作物词表
+# 设置主粮和杂粮列表，统一所有抓取脚本、报告脚本、清洗脚本用的作物集合
+# 后面增删作物时，不再改 Python 源码
+version: 1
+
+# 后需程序脚本中使用：all_crops = cfg["crops"]["staple"] + cfg["crops"]["minor"]
+
+crops:
+  # 主粮列表
+  staple:
+    - maize
+    - wheat
+    - rice
+    - soybean
+    - potato
+    - cassava
+    - sweet potato
+    - yam
+
+  # 杂粮列表
+  minor:
+    - sorghum
+    - foxtail millet
+    - oat
+    - barley
+    - buckwheat
+    - quinoa
+    - pearl millet
+    - proso millet
+    - finger millet
+    - rye
+    - triticale
+    - amaranth
+    - teff
+    - spelt
+    - adlay
+    - chia
+    - sesame
+    - lentil
+    - chickpea
+    - cowpea
+    - mung bean
+    - pigeon pea
+    - fava bean
+    - adzuki bean

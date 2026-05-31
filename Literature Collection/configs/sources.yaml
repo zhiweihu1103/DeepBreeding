@@ -1,0 +1,51 @@
+# Source-level configuration.
+# Defines enabled sources, retrieval modes, output directories, retry settings,
+# and whether local xRxiv relevance filtering is applied.
+
+version: 1
+
+pubmed:
+  enabled: true
+  mode: api
+  output_dir: data/raw/pubmed
+  skip_if_exists: true
+  sleep_seconds: 2
+  max_retries: 3
+
+arxiv:
+  enabled: true
+  mode: api
+  output_dir: data/raw/arxiv
+  skip_if_exists: true
+  sleep_seconds: 5
+  max_retries: 3
+  rate_limit_sleep_seconds: 60
+  network_retry_sleep_seconds: 15
+  use_strict_query_string: true
+
+biorxiv:
+  enabled: true
+  mode: local_dump
+  dump_dir: data/private/server_dumps/biorxiv
+  output_dir: data/raw/biorxiv
+  skip_if_exists: true
+  enable_relevance_filter: true  # Set false for coarse local retrieval without xRxiv relevance filtering.
+  note: primary xRxiv source for crop-breeding literature
+
+medrxiv:
+  enabled: true
+  mode: local_dump
+  dump_dir: data/private/server_dumps/medrxiv
+  output_dir: data/raw/medrxiv
+  skip_if_exists: true
+  enable_relevance_filter: true  # Keep true for the default conservative xRxiv filtering workflow.
+  note: supported but expected low relevance for crop-breeding literature
+
+chemrxiv:
+  enabled: true
+  mode: local_dump
+  dump_dir: data/private/server_dumps/chemrxiv
+  output_dir: data/raw/chemrxiv
+  skip_if_exists: true
+  enable_relevance_filter: true  # Keep true for the default conservative xRxiv filtering workflow.
+  note: supported but expected low relevance for crop-breeding literature
