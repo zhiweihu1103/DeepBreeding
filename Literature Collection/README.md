@@ -1,26 +1,42 @@
 # Literature Collection
 
-`Literature Collection` 是 `DeepBreeding` 中用于农业育种文献检索与预处理的轻量模块，保留了当前稳定可用的检索、过滤、清洗、去重与统计流程，便于在项目内部继续维护和使用。
+## Overview
 
-## 模块功能
+`Literature Collection` is a lightweight `DeepBreeding` module for agricultural breeding literature retrieval, preprocessing, cleaning, deduplication, and raw inventory reporting.
 
-- 支持 PubMed 检索
-- 支持 arXiv 检索
-- 支持 bioRxiv / medRxiv / chemRxiv 本地 dump 检索
-- 根据作物与技术配置自动生成查询词组合
-- 为命中文献补充 `retrieval_word` 标记
-- 进行清洗与 DOI/标题去重
-- 生成原始结果库存报告（raw inventory report）
+This module is maintained inside the `DeepBreeding` repository rather than as a standalone project. It publishes code, scripts, and configuration only. It does not include raw dumps, cleaned corpus data, private datasets, generated JSONL outputs, or virtual environments.
 
-## 不包含的内容
+## Module Capabilities
 
-- 不包含 raw dumps
-- 不包含 cleaned corpus
-- 不包含 private datasets
-- 不包含生成后的 JSONL outputs
-- 不包含 virtual environment
+- PubMed retrieval
+- arXiv retrieval
+- bioRxiv / medRxiv / chemRxiv local dump retrieval
+- crop and technology query generation from YAML configs
+- `retrieval_word` tagging for query provenance
+- xRxiv relevance filtering
+- cleaning and DOI/title-based deduplication
+- raw inventory report generation
 
-## 环境准备
+## Directory Structure
+
+```text
+Literature Collection/
+|-- README.md
+|-- requirements.txt
+|-- configs/
+|-- scripts/
+`-- src/agri_lit_pipeline/
+```
+
+- `README.md`: practical usage notes for this module
+- `requirements.txt`: pinned runtime dependencies
+- `configs/`: crop, technology, source, and pipeline YAML configuration
+- `scripts/`: entry scripts for retrieval, cleaning, and reporting
+- `src/agri_lit_pipeline/`: shared pipeline logic and source adapters
+
+## Environment Setup
+
+Python 3.11+ is recommended.
 
 ```powershell
 python -m venv .venv
@@ -28,43 +44,103 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## 配置文件
+Notes:
 
-- `configs/crops.yaml`：作物词表配置
-- `configs/technologies.yaml`：技术词表配置
-- `configs/sources.yaml`：数据源与检索相关配置
-- `configs/pipeline.yaml`：清洗、输出路径等流程配置
+- `paperscraper==0.3.6` is pinned in `requirements.txt`.
+- Network or proxy availability may affect PubMed retrieval, arXiv retrieval, and xRxiv dump downloads.
+- A full crawl is not required for a quick code or configuration check.
 
-## 运行方式
+## Configuration Files
+
+- `configs/crops.yaml`: crop terms used to build retrieval queries
+- `configs/technologies.yaml`: breeding technology terms used to build retrieval queries
+- `configs/sources.yaml`: source settings, output directories, and the xRxiv relevance-filter switch
+- `configs/pipeline.yaml`: final cleaned output and report settings
+
+If the retrieval vocabulary needs to change, edit the YAML files first before changing anything in code.
+
+## Recommended Workflow
+
+Step 1: configure crops, technologies, and sources in the YAML files.
+
+Step 2: run PubMed retrieval if network access is available.
+
+Step 3: run arXiv retrieval if that source is needed.
+
+Step 4: download xRxiv dumps if local dump search is needed.
+
+Step 5: run local bioRxiv, medRxiv, and chemRxiv retrieval against the prepared dumps.
+
+Step 6: run cleaning and deduplication.
+
+Step 7: run raw inventory report generation.
+
+## Command Examples
 
 ```powershell
 python scripts/run_pubmed.py
 python scripts/run_arxiv.py
 python scripts/download_biorxiv_dump.py
+python scripts/download_medrxiv_dump.py
+python scripts/download_chemrxiv_dump.py
 python scripts/run_biorxiv_local.py
+python scripts/run_medrxiv_local.py
+python scripts/run_chemrxiv_local.py
 python scripts/run_cleaning.py
 python scripts/run_report.py
 ```
 
-- `PubMed` 和 `arXiv` 检索依赖网络。
-- `xRxiv` dump 下载依赖网络以及 `paperscraper` 上游可用性。
-- `bioRxiv / medRxiv / chemRxiv` 本地检索需要先准备本地 dumps。
+These commands are the standard workflow entry points. For a quick validation pass, you do not need to run full crawling.
 
-## bioRxiv / xRxiv 相关性过滤
+## xRxiv Relevance Filtering
 
-默认配置保留 `enable_relevance_filter: true`。这并不保证得到完全“干净”的语料，只是用于减少明显跨领域无关噪声。如果需要更粗粒度的召回，可在 `configs/sources.yaml` 中将 `enable_relevance_filter` 设置为 `false`。关闭过滤后通常会提高 recall，但也会明显增加噪声。
+The bioRxiv, medRxiv, and chemRxiv local workflows use `enable_relevance_filter` in `configs/sources.yaml`.
 
-## 去重说明
+- The default value is `true`.
+- This setting reduces obvious cross-domain noise.
+- It does not guarantee a fully curated or fully clean corpus.
+- If coarse retrieval is preferred, set `enable_relevance_filter: false`.
+- Coarse retrieval usually increases recall, but it also increases noise.
 
-原始结果是 query-hit records，不是唯一论文列表。同一篇论文可能同时被多个作物词、技术词或不同来源命中。清洗阶段优先使用 DOI 去重，在 DOI 缺失时回退到规范化标题。`duplicates_merged` 表示被合并的重复命中记录数，并不表示存在同等数量的“完全不同重复论文”。
+## Deduplication and Duplicate Count Explanation
 
-## 最小校验
+Raw crawler outputs are query-hit records, not unique-paper records.
+
+The same paper may be retrieved multiple times by different crop terms, technology terms, or source-specific queries. As a result, a large duplicate-hit count does not mean that millions of distinct papers are duplicated.
+
+Cleaning uses normalized DOI first and normalized title as a fallback when DOI is missing. In the reporting outputs, `duplicates_merged` should be interpreted as merged redundant query-hit records. `unique_papers_saved` is closer to the final unique-paper count.
+
+Example:
+
+A maize GWAS paper may be retrieved by:
+
+- `maize breeding`
+- `maize GWAS`
+- `maize genomic selection`
+- `marker-assisted selection`
+
+These are multiple hits for one paper, not multiple different papers.
+
+## Minimal Validation
 
 ```powershell
 python -m compileall -q src scripts
 python -c "import yaml, pathlib; files=list(pathlib.Path('configs').glob('*.yaml')); [yaml.safe_load(p.read_text(encoding='utf-8')) for p in files]; print('YAML OK')"
 ```
 
-## 数据使用说明
+These checks validate Python syntax and YAML readability only. They do not run full crawling or generate collection outputs.
 
-本模块运行产生的数据输出应保留在本地，不应提交 raw data、cleaned data、private data、generated JSONL 或虚拟环境文件到版本库。
+## Data Policy
+
+- Do not commit raw dumps.
+- Do not commit cleaned corpus files.
+- Do not commit private datasets.
+- Do not commit generated JSONL outputs.
+- Do not commit virtual environments.
+
+## Notes for DeepBreeding Users
+
+- This module should be maintained as part of `DeepBreeding`.
+- If the query vocabulary changes, update the YAML configs first.
+- If source APIs or `paperscraper` behavior changes, rerun small smoke checks before full collection.
+- For formal data statistics, rerun cleaning on the current raw dataset and report `raw records`, `valid records`, `duplicates_merged`, and `unique_papers_saved` separately.
