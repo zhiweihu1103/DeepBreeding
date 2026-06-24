@@ -40,16 +40,16 @@ The automated workflow includes ``document input``, ``text chunking``, ``informa
 
 | Source Entity Type | Staple Crop Knowledge Graph Outgoing Relations Count | Minor Crop Knowledge Graph Outgoing Relations Count |
 |---|---:|---:|
-| Gene | 121,767 | 51,739 |
+| Genes | 121,767 | 51,739 |
 | Species | 52,856 | 26,954 |
-| Biological Process | 16,187 | 9,836 |
-| Phenotype | 16,900 | 4,116 |
-| Environmental Factor | 18,244 | 8,398 |
-| Experiment | 12,844 | 6,674 |
-| Molecular Marker | 2,930 | 4,376 |
-| Breeding Method | 3,701 | 4,349 |
-| Agronomic Practice | 1,868 | 337 |
-| Growth Stage | 947 | 204 |
+| Biological Processes | 16,187 | 9,836 |
+| Phenotypes | 16,900 | 4,116 |
+| Environmental Factors | 18,244 | 8,398 |
+| Experiments | 12,844 | 6,674 |
+| Molecular Markers | 2,930 | 4,376 |
+| Breeding Methods | 3,701 | 4,349 |
+| Agronomic Practices | 1,868 | 337 |
+| Growth Stages | 947 | 204 |
 
 ## 📊 Model Evaluation
 
