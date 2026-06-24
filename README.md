@@ -93,7 +93,7 @@ If you use DeepBreeding, please cite:
 
 ```bibtex
 @article{hu2026deepbreeding,
-  title   = {DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation},
+  title   = {DeepBreeding: A Knowledge-Integrated Platform for Evidence-Grounded Crop Breeding Report Generation},
   year    = {2026}
 }
 ```
