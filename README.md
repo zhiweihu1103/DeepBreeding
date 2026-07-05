@@ -64,10 +64,10 @@ DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question
 
 | Model Group | Description |
 |---|---|
-| General LLMs | General-purpose LLM baselines without crop-breeding-specific adaptation. |
-| Reasoning LLMs | LLMs with explicit or enhanced reasoning mechanisms for complex problem decomposition and multi-step analysis. |
-| General SLMs | Lightweight small language models without domain-specific knowledge construction, retrieval, or distillation. |
-| General SLMs + DeepBreeding | Small language models enhanced with the crop breeding knowledge graph, knowledge retrieval, and knowledge distillation. |
+| gLLMs | General-purpose LLM baselines without crop-breeding-specific adaptation. |
+| rLLMs | LLMs with explicit or enhanced reasoning mechanisms for complex problem decomposition and multi-step analysis. |
+| gSLMs | Lightweight small language models without domain-specific knowledge construction, retrieval, or distillation. |
+| gSLMs-DB | Small language models enhanced with the crop breeding knowledge graph, knowledge retrieval, and knowledge distillation. |
 
 ## 🚀 Quick Start
 
