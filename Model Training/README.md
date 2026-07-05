@@ -41,7 +41,7 @@ If the WebUI cannot be accessed, check whether port `7860` is blocked by the fir
 
 ## 3. Prepare Dataset
 
-Create a training file under the `data/` directory:
+Create a training file under the `data/` directory. You can use the datasets located under the path `Supplemental Information/Datasets/Datasets for Different Figures`.
 
 ```bash
 vim data/test.json
