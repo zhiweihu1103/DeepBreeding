@@ -102,7 +102,7 @@ Set the following options in WebUI:
 | LoRA Rank       | `8`                                                           |
 | LoRA Alpha      | `16`                                                          |
 | LoRA+ LR Ratio  | `16`                                                          |
-| Output Dir      | `saves/Qwen2.5-3B-Instruct/lora/grain`                        |
+| Output Dir      | `saves/Qwen2.5-3B-Instruct/lora/crop_test`                        |
 
 After completing the configuration, click `Start` to begin fine-tuning.
 
@@ -118,7 +118,7 @@ Add the following content:
 
 ```yaml
 model_name_or_path: benchmark_model_weights/Qwen2.5-3B-Instruct
-adapter_name_or_path: saves/Qwen2.5-3B-Instruct/lora/grain
+adapter_name_or_path: saves/Qwen2.5-3B-Instruct/lora/crop_test
 template: qwen
 finetuning_type: lora
 trust_remote_code: true
@@ -128,41 +128,4 @@ Start the API service:
 
 ```bash
 API_PORT=8000 CUDA_VISIBLE_DEVICES=0 llamafactory-cli api crop_inference.yaml
-```
-
-## 7. Python Inference Example
-
-```python
-from openai import OpenAI
-
-base_url = "http://127.0.0.1:8000/v1"
-model = "benchmark_model_weights/Qwen2.5-3B-Instruct"
-
-client = OpenAI(api_key="0", base_url=base_url)
-
-system_content = "You are an expert assistant in breeding and plant genetics."
-
-user_content = """Please answer the following multiple-choice question.
-
-### Question: In the species Avena sativa, which gene contains C2H2 zinc finger, WRKY DNA-binding domain, and C2HC zinc finger domains?
-### Options:
-A. AsWRKY
-B. AsMYB2R
-C. AsNAC
-D. AsTCP
-"""
-
-messages = [
-    {"role": "system", "content": system_content},
-    {"role": "user", "content": user_content}
-]
-
-result = client.chat.completions.create(
-    model=model,
-    messages=messages,
-    temperature=0.0,
-    max_tokens=512
-)
-
-print(result.choices[0].message.content)
 ```
