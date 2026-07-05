@@ -1,108 +1,188 @@
-<div align="center">
-  
-# 🌾 [DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation](https://deepbreeding.com)
+# Model Training Tutorial
 
-</div>
+## 1. Installation
 
-## 🌱 Overview
+Clone the LLaMA-Factory repository and install the required dependencies:
 
-Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records, limiting rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
+```bash
+git clone https://github.com/hiyouga/LLaMA-Factory.git
+cd LLaMA-Factory
 
-DeepBreeding addresses this challenge by organizing breeding knowledge into reusable knowledge graphs, retrieving question-relevant evidence, distilling reasoning patterns into deployable small language models, and evaluating performance with breeding-oriented benchmark tasks.
+conda create -n model_train python=3.11 -y
+conda activate model_train
 
-## 🧩 Core Modules
+pip install -e ".[torch,metrics]" --no-build-isolation
+```
 
-| Module | Role | Implementation |
-|---|---|---|
-| ⚙️ Platform Framework | Provides the base framework for implementing the DeepBreeding platform and organizing the application workflow. | [Yuxi](https://github.com/xerrors/Yuxi) |
-| 📚 Literature Collection | Retrieves and curates staple crop and minor crop literatures for knowledge graph construction. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
-| 🧬 Knowledge Graph Construction | Converts literature and breeding records into entity-relation-evidence graphs for retrieval and traceable reasoning. | [LightRAG](https://github.com/HKUDS/LightRAG) |
-| 🏋️ Model Training | Distills LLM reasoning into deployable small language models through supervised fine-tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
-| 📊 Model Evaluation | Evaluates breeding knowledge reasoning across standardized benchmark tasks. | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
+Check whether the installation is successful:
 
-## 📚 Literature Collection
+```bash
+llamafactory-cli version
+```
 
-The paper systematically retrieves and curates breeding-related literature from ``PubMed``, ``bioRxiv``, and other public resources. Search terms focus on ``gene expression``, ``transcription factors``, and ``breeding-relevant`` biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
+---
 
-| Crop Group | Species | Publications |
-|---|---|---:|
-| staple crops | *Oryza sativa*, *Triticum aestivum*, *Zea mays* | 41,089 |
-| minor crops | *Avena sativa*, *Coix lacryma-jobi*, *Fagopyrum esculentum*, *Hordeum vulgare*, *Lens culinaris*, *Pisum sativum*, *Setaria italica*, *Sorghum bicolor*, *Vigna angularis*, *Vigna radiata*, *Vigna unguiculata* | 9,829 |
+## 2. Start WebUI
 
-## 🧬 Knowledge Graph Construction
+```bash
+export NCCL_P2P_DISABLE=1
+export NCCL_IB_DISABLE=1
 
-The automated workflow includes ``document input``, ``text chunking``, ``information extraction``, ``information merging``, ``graph structuring``, and ``graph storage``.
+CUDA_VISIBLE_DEVICES=0 llamafactory-cli webui
+```
 
-| Knowledge Graph | Entities | Edges |
-|---|---:|---:|
-| staple crop knowledge graph | 84,668 | 248,244 |
-| minor crop knowledge graph | 38,252 | 116,983 |
+Open the following address in the browser:
 
-| Source Entity Type | Staple Crop Knowledge Graph Outgoing Relations Count | Minor Crop Knowledge Graph Outgoing Relations Count |
-|---|---:|---:|
-| Gene | 121,767 | 51,739 |
-| Species | 52,856 | 26,954 |
-| Biological Process | 16,187 | 9,836 |
-| Phenotype | 16,900 | 4,116 |
-| Environmental Factor | 18,244 | 8,398 |
-| Experiment | 12,844 | 6,674 |
-| Molecular Marker | 2,930 | 4,376 |
-| Breeding Method | 3,701 | 4,349 |
-| Agronomic Practice | 1,868 | 337 |
-| Growth Stage | 947 | 204 |
+```text
+http://127.0.0.1:7860/
+```
 
-## 📊 Model Evaluation
+If the WebUI cannot be accessed, check whether port `7860` is blocked by the firewall or security group.
 
-DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories. The evaluation compares General LLMs, Reasoning LLMs, General SLMs, and General SLMs enhanced with DeepBreeding.
+---
 
-| Category | Tasks |
-|---|---|
-| Gene-Level Feature Identification | ``Gene Structural Domains``; ``Chromosomal Localization of Genes`` |
-| Regulatory Mechanism Interpretation | ``Cis-Regulatory Elements``; ``Trans-Acting Factors``; ``Functional Validation of Regulatory Elements`` |
-| Gene Function and Systems-Level Validation | ``Functional Genomics``; ``Systems Genetics``; ``Gain- and Loss-of-Function Validation`` |
-| Gene-Phenotype Association Reasoning | ``Association Between Homologous Genes and Phenotypes``; ``Gene Effects and Phenotypic Associations`` |
+## 3. Prepare Dataset
 
-| Model Group | Description |
-|---|---|
-| General LLMs | General-purpose LLM baselines without crop-breeding-specific adaptation. |
-| Reasoning LLMs | LLMs with explicit or enhanced reasoning mechanisms for complex problem decomposition and multi-step analysis. |
-| General SLMs | Lightweight small language models without domain-specific knowledge construction, retrieval, or distillation. |
-| General SLMs + DeepBreeding | Small language models enhanced with the crop breeding knowledge graph, knowledge retrieval, and knowledge distillation. |
+Create a training file under the `data/` directory:
 
-## 🚀 Quick Start
+```bash
+vim data/test.json
+```
 
-### 1. 📚 Literature Collection
+An example data format is shown below:
 
-refer to the corresponding subfolder [`Literature Collection/`](./Literature%20Collection/).
+```json
+[
+  {
+    "system": "You are an expert assistant in breeding and plant genetics.",
+    "instruction": "Please answer the multiple-choice question and provide supporting claims.",
+    "input": "### Question: In the species Avena sativa, which gene contains C2H2 zinc finger, WRKY DNA-binding domain, and C2HC zinc finger domains?\n### Options:\nA. AsWRKY\nB. AsMYB2R\nC. AsNAC\nD. AsTCP",
+    "output": "### Answer: A\n### Claims:\n1. WRKY transcription factors contain conserved WRKY DNA-binding domains.\n2. AsWRKY is a WRKY transcription factor identified in Avena sativa.",
+    "history": []
+  }
+]
+```
 
-### 2. 🧬 Knowledge Graph Construction
+Field descriptions:
 
-refer to the corresponding subfolder [`Knowledge Graph Construction/`](./Knowledge%20Graph%20Construction/).
+| Field         | Meaning              |
+| ------------- | -------------------- |
+| `system`      | System prompt        |
+| `instruction` | Task instruction     |
+| `input`       | Question and options |
+| `output`      | Target answer        |
+| `history`     | Dialogue history     |
 
-### 3. 🏋️ Model Training
+---
 
-refer to the corresponding subfolder [`Model Training/`](./Model%20Training/).
+## 4. Register Dataset
 
-### 4. 📊 Model Evaluation
+Edit `data/dataset_info.json` and add the following content:
 
-refer to the corresponding subfolder [`Model Evaluation/`](./Model%20Evaluation/).
-
-## 📝 Citation
-
-If you use DeepBreeding, please cite:
-
-```bibtex
-@article{hu2026deepbreeding,
-  title   = {DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation},
-  year    = {2026}
+```json
+"grain_test": {
+  "file_name": "test.json",
+  "columns": {
+    "prompt": "instruction",
+    "query": "input",
+    "response": "output",
+    "system": "system",
+    "history": "history"
+  }
 }
 ```
 
-## 🔗 Links
+Here, `grain_test` is the dataset name selected in WebUI during fine-tuning.
 
-- 🌐 [DeepBreeding Platform](https://deepbreeding.com) 
-- ⚙️ [Platform Framework](https://github.com/xerrors/Yuxi) 
-- 📚 [Literature Collection](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler)
-- 🧬 [Knowledge Graph Construction](https://github.com/HKUDS/LightRAG)
-- 🏋️ [Model Training](https://github.com/hiyouga/LlamaFactory)
-- 📊 [Model Evaluation](https://github.com/EleutherAI/lm-evaluation-harness)
+---
+
+## 5. Fine-tuning with WebUI
+
+Set the following options in WebUI:
+
+| Option          | Value                                                         |
+| --------------- | ------------------------------------------------------------- |
+| Model Name      | `Qwen2.5-3B-Instruct`                                         |
+| Model Path      | `/data/Users/hzw/benchmark_model_weights/Qwen2.5-3B-Instruct` |
+| Stage           | `sft`                                                         |
+| Finetuning Type | `lora`                                                        |
+| Chat Template   | `qwen`                                                        |
+| Dataset         | `grain_test`                                                  |
+| Epoch           | `3`                                                           |
+| LoRA Rank       | `8`                                                           |
+| LoRA Alpha      | `16`                                                          |
+| LoRA+ LR Ratio  | `16`                                                          |
+| Output Dir      | `saves/Qwen2.5-3B-Instruct/lora/grain`                        |
+
+After completing the configuration, click `Start` to begin fine-tuning.
+
+---
+
+## 6. API Inference after Fine-tuning
+
+Create an inference configuration file:
+
+```bash
+vim examples/inference/grain_inference.yaml
+```
+
+Add the following content:
+
+```yaml
+model_name_or_path: /data/Users/hzw/benchmark_model_weights/Qwen2.5-3B-Instruct
+adapter_name_or_path: /data/Users/hzw/reproduce_code/sxau_benchmark/LLaMA-Factory/saves/Qwen2.5-3B-Instruct/lora/grain
+template: qwen
+finetuning_type: lora
+trust_remote_code: true
+```
+
+Start the API service:
+
+```bash
+API_PORT=8000 CUDA_VISIBLE_DEVICES=0 llamafactory-cli api examples/inference/grain_inference.yaml
+```
+
+The API endpoint is:
+
+```text
+http://115.24.15.13:8000/v1
+```
+
+---
+
+## 7. Python Inference Example
+
+```python
+from openai import OpenAI
+
+base_url = "http://115.24.15.13:8000/v1"
+model = "/data/Users/hzw/benchmark_model_weights/Qwen2.5-3B-Instruct"
+
+client = OpenAI(api_key="0", base_url=base_url)
+
+system_content = "You are an expert assistant in breeding and plant genetics."
+
+user_content = """Please answer the following multiple-choice question.
+
+### Question: In the species Avena sativa, which gene contains C2H2 zinc finger, WRKY DNA-binding domain, and C2HC zinc finger domains?
+### Options:
+A. AsWRKY
+B. AsMYB2R
+C. AsNAC
+D. AsTCP
+"""
+
+messages = [
+    {"role": "system", "content": system_content},
+    {"role": "user", "content": user_content}
+]
+
+result = client.chat.completions.create(
+    model=model,
+    messages=messages,
+    temperature=0.0,
+    max_tokens=512
+)
+
+print(result.choices[0].message.content)
+```
