@@ -82,6 +82,11 @@ Edit `data/dataset_info.json` and add the following content:
 
 
 ## 5. Fine-tuning with WebUI
+Open the following address in the browser:
+
+```text
+http://127.0.0.1:7860/
+```
 
 Set the following options in WebUI:
 
