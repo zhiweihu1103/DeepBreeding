@@ -77,8 +77,8 @@ Edit `data/dataset_info.json` and add the following content:
 }
 ```
 
-`crop_test` is the dataset name selected in WebUI during fine-tuning.
-`xxx.jsonl` is your jsonl data, which can be found in `Supplemental Information/Datasets/Datasets for Different Figures`.
+- `crop_test` is the dataset name selected in WebUI during fine-tuning.
+- `xxx.jsonl` is your jsonl data, which can be found in `Supplemental Information/Datasets/Datasets for Different Figures`.
 
 
 ## 5. Fine-tuning with WebUI
