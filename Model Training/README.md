@@ -2,14 +2,12 @@
 
 ## 1. Installation
 
-Clone the LLaMA-Factory repository and install the required dependencies:
-
 ```bash
-git clone https://github.com/hiyouga/LLaMA-Factory.git
-cd LLaMA-Factory
+Download DeepBreeding_Model_Train.zip and extract it to the specified folder.
+cd DeepBreeding_Model_Train
 
-conda create -n model_train python=3.11 -y
-conda activate model_train
+conda create -n deepbreeding_model_train python=3.11 -y
+conda activate deepbreeding_model_train
 
 pip install -e ".[torch,metrics]" --no-build-isolation
 ```
