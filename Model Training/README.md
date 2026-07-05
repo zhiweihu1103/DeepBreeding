@@ -18,8 +18,6 @@ Check whether the installation is successful:
 llamafactory-cli version
 ```
 
----
-
 ## 2. Start WebUI
 
 ```bash
@@ -36,8 +34,6 @@ http://127.0.0.1:7860/
 ```
 
 If the WebUI cannot be accessed, check whether port `7860` is blocked by the firewall or security group.
-
----
 
 ## 3. Prepare Dataset
 
@@ -64,30 +60,26 @@ Field descriptions:
 | `instruction` | Task instruction     |
 | `input`       | Question and options |
 | `output`      | Target answer        |
-| `history`     | Dialogue history     |
-
----
 
 ## 4. Register Dataset
 
 Edit `data/dataset_info.json` and add the following content:
 
 ```json
-"grain_test": {
-  "file_name": "test.json",
+"crop_test": {
+  "file_name": "xxx.jsonl",
   "columns": {
     "prompt": "instruction",
     "query": "input",
     "response": "output",
-    "system": "system",
-    "history": "history"
+    "system": "system"
   }
 }
 ```
 
-Here, `grain_test` is the dataset name selected in WebUI during fine-tuning.
+`crop_test` is the dataset name selected in WebUI during fine-tuning.
+`xxx.jsonl` is your jsonl data, which can be found in `Supplemental Information/Datasets/Datasets for Different Figures`.
 
----
 
 ## 5. Fine-tuning with WebUI
 
@@ -96,11 +88,11 @@ Set the following options in WebUI:
 | Option          | Value                                                         |
 | --------------- | ------------------------------------------------------------- |
 | Model Name      | `Qwen2.5-3B-Instruct`                                         |
-| Model Path      | `/data/Users/hzw/benchmark_model_weights/Qwen2.5-3B-Instruct` |
+| Model Path      | `benchmark_model_weights/Qwen2.5-3B-Instruct` |
 | Stage           | `sft`                                                         |
 | Finetuning Type | `lora`                                                        |
 | Chat Template   | `qwen`                                                        |
-| Dataset         | `grain_test`                                                  |
+| Dataset         | `crop_test`                                                  |
 | Epoch           | `3`                                                           |
 | LoRA Rank       | `8`                                                           |
 | LoRA Alpha      | `16`                                                          |
@@ -109,21 +101,19 @@ Set the following options in WebUI:
 
 After completing the configuration, click `Start` to begin fine-tuning.
 
----
-
 ## 6. API Inference after Fine-tuning
 
 Create an inference configuration file:
 
 ```bash
-vim examples/inference/grain_inference.yaml
+vim crop_inference.yaml
 ```
 
 Add the following content:
 
 ```yaml
-model_name_or_path: /data/Users/hzw/benchmark_model_weights/Qwen2.5-3B-Instruct
-adapter_name_or_path: /data/Users/hzw/reproduce_code/sxau_benchmark/LLaMA-Factory/saves/Qwen2.5-3B-Instruct/lora/grain
+model_name_or_path: benchmark_model_weights/Qwen2.5-3B-Instruct
+adapter_name_or_path: saves/Qwen2.5-3B-Instruct/lora/grain
 template: qwen
 finetuning_type: lora
 trust_remote_code: true
@@ -132,24 +122,16 @@ trust_remote_code: true
 Start the API service:
 
 ```bash
-API_PORT=8000 CUDA_VISIBLE_DEVICES=0 llamafactory-cli api examples/inference/grain_inference.yaml
+API_PORT=8000 CUDA_VISIBLE_DEVICES=0 llamafactory-cli api crop_inference.yaml
 ```
-
-The API endpoint is:
-
-```text
-http://115.24.15.13:8000/v1
-```
-
----
 
 ## 7. Python Inference Example
 
 ```python
 from openai import OpenAI
 
-base_url = "http://115.24.15.13:8000/v1"
-model = "/data/Users/hzw/benchmark_model_weights/Qwen2.5-3B-Instruct"
+base_url = "http://127.0.0.1:8000/v1"
+model = "benchmark_model_weights/Qwen2.5-3B-Instruct"
 
 client = OpenAI(api_key="0", base_url=base_url)
 
