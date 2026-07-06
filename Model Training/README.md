@@ -1,5 +1,3 @@
-# Model Training Tutorial
-
 ## 1. Installation
 
 ```bash
