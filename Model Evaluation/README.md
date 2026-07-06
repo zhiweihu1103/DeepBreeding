@@ -78,7 +78,7 @@ for task in "${tasks[@]}"; do
           --model_args pretrained="$model" \
           --tasks "$task" \
           --batch_size auto \
-          --output_path "results_grainbench/${task}/${model_name}/" \
+          --output_path "${task}/${model_name}/" \
           > "logs/${task}_${model_name}.log" 2>&1
 
         echo "  Finished: $model_name"
@@ -87,4 +87,4 @@ done
 ```
 
 ## 4. Run Evaluation
-bash run_crop.sh
+`bash run_crop.sh`
