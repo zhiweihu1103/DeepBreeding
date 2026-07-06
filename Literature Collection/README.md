@@ -1,4 +1,4 @@
-# Literature Collection
+# Literature Collection 
 
 ## 1. Installation
 
