@@ -61,7 +61,7 @@ models=(
 )
 
 tasks=(
-    "task_4_2"
+    "crop_task"
 )
 
 mkdir -p logs
