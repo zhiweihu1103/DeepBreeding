@@ -81,7 +81,7 @@ refer to the corresponding subfolder [`Knowledge Graph Construction/`](./Knowled
 
 ### 3. 🏋️ Model Training
 
-refer to the corresponding subfolder [`Model Training/`](./Model%20Training/).
+refer to the corresponding subfolder [`Model Training/`](./Model%20Training).
 
 ### 4. 📊 Model Evaluation
 
