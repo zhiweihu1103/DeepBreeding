@@ -13,12 +13,14 @@ pip install -e .
 ```
 
 List available tasks:
-
+```bash
 python3 lm_eval/__main__.py --tasks list
+```
 
 Check whether a specific task exists:
-
+```bash
 python3 lm_eval/__main__.py --tasks list | grep crop_task
+```
 
 ## 2. Prepare Dataset
 
