@@ -24,7 +24,7 @@ python3 lm_eval/__main__.py --tasks list | grep crop_task
 
 ## 2. Prepare Dataset
 
-You can use the datasets located under the path `Supplemental Information/Datasets/Datasets for Different Figures`. Move the downloaded task dataset to: `DeepBreeding_Model_Evaluation/lm_eval/tasks/`
+You can use the datasets located under the path [`Supplemental Information/Datasets/Datasets for Different Figures`](./Supplemental%20Information/Datasets/Datasets%20for%20Different%20Figures/). Move the downloaded task dataset to: `DeepBreeding_Model_Evaluation/lm_eval/tasks/`
 
 An example data format is shown below:
 
