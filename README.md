@@ -6,7 +6,7 @@
 
 ## 🌱 Overview
 
-Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records, limiting rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
+Crop breeding knowledge is scattered across scientific literature and public databases, limiting rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
 
 DeepBreeding addresses this challenge by organizing breeding knowledge into reusable knowledge graphs, retrieving question-relevant evidence, distilling reasoning patterns into deployable small language models, and evaluating performance with breeding-oriented benchmark tasks.
 
