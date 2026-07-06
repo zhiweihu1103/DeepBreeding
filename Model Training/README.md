@@ -37,7 +37,7 @@ If the WebUI cannot be accessed, check whether port `7860` is blocked by the fir
 
 ## 3. Prepare Dataset
 
-Create a training file under the `data/` directory. You can use the datasets located under the path `Supplemental Information/Datasets/Datasets for Different Figures`.
+Create a training file under the `data/` directory. You can use the datasets located under the path [`Supplemental Information/Datasets/Datasets for Different Figures`](../Supplemental%20Information/Datasets/Datasets%20for%20Different%20Figures/).
 
 An example data format is shown below:
 
