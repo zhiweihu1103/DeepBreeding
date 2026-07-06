@@ -53,7 +53,7 @@ The automated workflow includes ``document input``, ``text chunking``, ``informa
 
 ## 📊 Model Evaluation
 
-DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories. The evaluation compares General LLMs, Reasoning LLMs, General SLMs, and General SLMs enhanced with DeepBreeding.
+DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories. The evaluation compares gLLMs, rLLMs, gSLMs, and gSLMs-DB.
 
 | Category | Tasks |
 |---|---|
