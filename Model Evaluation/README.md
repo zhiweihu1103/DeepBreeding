@@ -1,108 +1,86 @@
-<div align="center">
-  
-# 🌾 [DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation](https://deepbreeding.com)
+## 1. Installation
 
-</div>
+```bash
+Download DeepBreeding_Model_Evaluation.zip and extract it to the specified folder.
+cd DeepBreeding_Model_Evaluation
 
-## 🌱 Overview
+conda create -n deepbreeding_model_evaluation python=3.11 -y
+conda activate deepbreeding_model_evaluation
 
-Crop breeding knowledge is scattered across scientific literature, public databases, and long-term breeding records, limiting rapid evidence integration for gene function, regulatory mechanisms, phenotype associations, and practical breeding recommendations.
-
-DeepBreeding addresses this challenge by organizing breeding knowledge into reusable knowledge graphs, retrieving question-relevant evidence, distilling reasoning patterns into deployable small language models, and evaluating performance with breeding-oriented benchmark tasks.
-
-## 🧩 Core Modules
-
-| Module | Role | Implementation |
-|---|---|---|
-| ⚙️ Platform Framework | Provides the base framework for implementing the DeepBreeding platform and organizing the application workflow. | [Yuxi](https://github.com/xerrors/Yuxi) |
-| 📚 Literature Collection | Retrieves and curates staple crop and minor crop literatures for knowledge graph construction. | [DeepBreeding literature crawler](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler) |
-| 🧬 Knowledge Graph Construction | Converts literature and breeding records into entity-relation-evidence graphs for retrieval and traceable reasoning. | [LightRAG](https://github.com/HKUDS/LightRAG) |
-| 🏋️ Model Training | Distills LLM reasoning into deployable small language models through supervised fine-tuning. | [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory) |
-| 📊 Model Evaluation | Evaluates breeding knowledge reasoning across standardized benchmark tasks. | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) |
-
-## 📚 Literature Collection
-
-The paper systematically retrieves and curates breeding-related literature from ``PubMed``, ``bioRxiv``, and other public resources. Search terms focus on ``gene expression``, ``transcription factors``, and ``breeding-relevant`` biological evidence. The retrieval scope covers publications up to **December 1, 2025**.
-
-| Crop Group | Species | Publications |
-|---|---|---:|
-| staple crops | *Oryza sativa*, *Triticum aestivum*, *Zea mays* | 41,089 |
-| minor crops | *Avena sativa*, *Coix lacryma-jobi*, *Fagopyrum esculentum*, *Hordeum vulgare*, *Lens culinaris*, *Pisum sativum*, *Setaria italica*, *Sorghum bicolor*, *Vigna angularis*, *Vigna radiata*, *Vigna unguiculata* | 9,829 |
-
-## 🧬 Knowledge Graph Construction
-
-The automated workflow includes ``document input``, ``text chunking``, ``information extraction``, ``information merging``, ``graph structuring``, and ``graph storage``.
-
-| Knowledge Graph | Entities | Edges |
-|---|---:|---:|
-| staple crop knowledge graph | 84,668 | 248,244 |
-| minor crop knowledge graph | 38,252 | 116,983 |
-
-| Source Entity Type | Staple Crop Knowledge Graph Outgoing Relations Count | Minor Crop Knowledge Graph Outgoing Relations Count |
-|---|---:|---:|
-| Gene | 121,767 | 51,739 |
-| Species | 52,856 | 26,954 |
-| Biological Process | 16,187 | 9,836 |
-| Phenotype | 16,900 | 4,116 |
-| Environmental Factor | 18,244 | 8,398 |
-| Experiment | 12,844 | 6,674 |
-| Molecular Marker | 2,930 | 4,376 |
-| Breeding Method | 3,701 | 4,349 |
-| Agronomic Practice | 1,868 | 337 |
-| Growth Stage | 947 | 204 |
-
-## 📊 Model Evaluation
-
-DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question-answering tasks** across four knowledge categories. The evaluation compares General LLMs, Reasoning LLMs, General SLMs, and General SLMs enhanced with DeepBreeding.
-
-| Category | Tasks |
-|---|---|
-| Gene-Level Feature Identification | ``Gene Structural Domains``; ``Chromosomal Localization of Genes`` |
-| Regulatory Mechanism Interpretation | ``Cis-Regulatory Elements``; ``Trans-Acting Factors``; ``Functional Validation of Regulatory Elements`` |
-| Gene Function and Systems-Level Validation | ``Functional Genomics``; ``Systems Genetics``; ``Gain- and Loss-of-Function Validation`` |
-| Gene-Phenotype Association Reasoning | ``Association Between Homologous Genes and Phenotypes``; ``Gene Effects and Phenotypic Associations`` |
-
-| Model Group | Description |
-|---|---|
-| General LLMs | General-purpose LLM baselines without crop-breeding-specific adaptation. |
-| Reasoning LLMs | LLMs with explicit or enhanced reasoning mechanisms for complex problem decomposition and multi-step analysis. |
-| General SLMs | Lightweight small language models without domain-specific knowledge construction, retrieval, or distillation. |
-| General SLMs + DeepBreeding | Small language models enhanced with the crop breeding knowledge graph, knowledge retrieval, and knowledge distillation. |
-
-## 🚀 Quick Start
-
-### 1. 📚 Literature Collection
-
-refer to the corresponding subfolder [`Literature Collection/`](./Literature%20Collection/).
-
-### 2. 🧬 Knowledge Graph Construction
-
-refer to the corresponding subfolder [`Knowledge Graph Construction/`](./Knowledge%20Graph%20Construction/).
-
-### 3. 🏋️ Model Training
-
-refer to the corresponding subfolder [`Model Training/`](./Model%20Training/).
-
-### 4. 📊 Model Evaluation
-
-refer to the corresponding subfolder [`Model Evaluation/`](./Model%20Evaluation/).
-
-## 📝 Citation
-
-If you use DeepBreeding, please cite:
-
-```bibtex
-@article{hu2026deepbreeding,
-  title   = {DeepBreeding: A Knowledge-Integrated Platform for Evidence-Traceable Crop Breeding Report Generation},
-  year    = {2026}
-}
+pip install -e .
 ```
 
-## 🔗 Links
+List available tasks:
 
-- 🌐 [DeepBreeding Platform](https://deepbreeding.com) 
-- ⚙️ [Platform Framework](https://github.com/xerrors/Yuxi) 
-- 📚 [Literature Collection](https://github.com/zhiweihu1103/DeepBreeding/tree/main/breeding_literature_crawler)
-- 🧬 [Knowledge Graph Construction](https://github.com/HKUDS/LightRAG)
-- 🏋️ [Model Training](https://github.com/hiyouga/LlamaFactory)
-- 📊 [Model Evaluation](https://github.com/EleutherAI/lm-evaluation-harness)
+python3 lm_eval/__main__.py --tasks list
+
+Check whether a specific task exists:
+
+python3 lm_eval/__main__.py --tasks list | grep crop_task
+
+## 2. Prepare Dataset
+
+You can use the datasets located under the path `Supplemental Information/Datasets/Datasets for Different Figures`. Move the downloaded task dataset to: `DeepBreeding_Model_Evaluation/lm_eval/tasks/`
+
+An example data format is shown below:
+
+```json
+[
+{
+  "system": "You are an expert assistant in breeding and plant genetics.\n    Your role is to answer multiple-choice questions accurately and objectively.\n    Your behavior guidelines:\n    - Be concise, factual, and decisive\n    - Select exactly one answer option\n    - Support your decision with factual, verifiable claims that could stand alone for fact-checking\n    ",
+  "instruction": "Please answer the question according to the instructions below:\n    1. Read the question and options.\n    2. Select the single best answer choice.\n    3. Produce a list of affirmative, decontextualized scientific claims that support your answer.\n    - Each claim should be accurate, standalone, and fact-checkable.\n    - Number each claim.\n    ",
+  "input": "### In-Context Examples:\n    ### Question: Which gene is commonly associated with drought tolerance in millet?\n    ### Options:\n    A. WRKY1\n    B. DREB2A\n    C. PHYB\n    D. GA20ox\n    ### Answer: B\n    ### Claims:\n    1. DREB2A is a transcription factor that regulates genes involved in plant stress responses.\n    2. DREB2A enhances drought tolerance by activating drought-responsive pathways.\n    3. WRKY1 and PHYB are not primarily associated with drought tolerance in millet.\n    ### Question: Which gene plays a major role in salt tolerance in foxtail millet?\n    ### Options:\n    A. HKT1\n    B. PPDK\n    C. PHYTOCHROME C\n    D. SWEET4\n    ### Answer: A\n    ### Claims:\n    1. HKT1 encodes a sodium transporter that maintains ion homeostasis under salt stress.\n    2. HKT1 improves salt tolerance by reducing toxic Na⁺ accumulation in plant tissues.\n    3. PPDK and PHYTOCHROME C are not known to be primary regulators of salt tolerance in foxtail millet.\n    ### Question: Which protein is primarily involved in regulating drought-induced ABA signaling in maize?\n    ### Options:\n    A. HY5\n    B. SnRK2.6\n    C. SOC1\n    D. PPDK\n    ### Answer: B\n    ### Claims:\n    1. SnRK2.6 is a central kinase activated by drought-induced ABA signaling.\n    2. It phosphorylates downstream transcription factors to promote drought-responsive gene expression.\n    3. HY5 and SOC1 mainly regulate photomorphogenesis and flowering, not drought-induced ABA signaling.\n    Now answer the following question:\n    ### Question: According to previous studies, which domain is characteristic of IPT in Zea mays?\n    ### Options:\nA. JRL, dirigent\nB. B3, Aux/IAA\nC. AP2 domain\nD. isopentenyltransferase domain",
+  "output": "### Answer: D\n    ### Claims:\n    1. IPT (isopentenyltransferase) is the key enzyme in cytokinin biosynthesis that catalyzes the first committed step.\n2. The IPT gene family in plants contains conserved isopentenyltransferase catalytic domains.\n3. In Zea mays, IPT genes have been identified and characterized with isopentenyltransferase domains.\n4. The isopentenyltransferase domain is responsible for transferring isopentenyl groups to AMP/ADP or ATP in cytokinin biosynthesis.\n5. Jacalin-related lectin domains and dirigent domains are associated with pathogen defense and lignin biosynthesis, not cytokinin biosynthesis.\n6. B3 DNA-binding domains and Aux/IAA dimerization domains are characteristic of transcription factors like ARF and Aux/IAA proteins.\n7. AP2 domains are found in AP2/ERF transcription factors involved in various stress responses and development."
+}
+]
+```
+
+Field descriptions:
+
+| Field         | Meaning              |
+| ------------- | -------------------- |
+| `system`      | System prompt        |
+| `instruction` | Task instruction     |
+| `input`       | Question and options |
+| `output`      | Target answer        |
+
+## 3. Create the Evaluation Script
+
+Create run_crop.sh under the root directory of DeepBreeding_Model_Evaluation:
+
+```python
+models=(
+    "benchmark_model_weights/Qwen3-0.6B"
+    "benchmark_model_weights/Qwen3-1.7B"
+    "benchmark_model_weights/Qwen3-4B"
+    "benchmark_model_weights/Qwen3-8B"
+)
+
+tasks=(
+    "task_4_2"
+)
+
+mkdir -p logs
+
+for task in "${tasks[@]}"; do
+    echo "Running task: $task"
+
+    for model in "${models[@]}"; do
+        model_name=$(basename "$model")
+        echo "  Running model: $model_name"
+
+        lm_eval \
+          --model hf \
+          --model_args pretrained="$model" \
+          --tasks "$task" \
+          --batch_size auto \
+          --output_path "results_grainbench/${task}/${model_name}/" \
+          > "logs/${task}_${model_name}.log" 2>&1
+
+        echo "  Finished: $model_name"
+    done
+done
+```
+
+## 4. Run Evaluation
+bash run_crop.sh
