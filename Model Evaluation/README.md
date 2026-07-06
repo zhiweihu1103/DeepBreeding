@@ -50,7 +50,7 @@ Field descriptions:
 
 ## 3. Create the Evaluation Script
 
-Create run_crop.sh under the root directory of DeepBreeding_Model_Evaluation:
+Create `run_crop.sh` under the root directory of DeepBreeding_Model_Evaluation:
 
 ```python
 models=(
