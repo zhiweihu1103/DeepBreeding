@@ -73,19 +73,19 @@ DeepBreeding uses a breeding-oriented benchmark with **10 single-choice question
 
 ### 1. 📚 Literature Collection
 
-refer to the corresponding subfolder [`Literature Collection/`](./Literature%20Collection/).
+refer to the corresponding subfolder [`Literature Collection`](./Literature%20Collection/).
 
 ### 2. 🧬 Knowledge Graph Construction
 
-refer to the corresponding subfolder [`Knowledge Graph Construction/`](./Knowledge%20Graph%20Construction/).
+refer to the corresponding subfolder [`Knowledge Graph Construction`](./Knowledge%20Graph%20Construction/).
 
 ### 3. 🏋️ Model Training
 
-refer to the corresponding subfolder [`Model Training/`](./Model%20Training).
+refer to the corresponding subfolder [`Model Training`](./Model%20Training/).
 
 ### 4. 📊 Model Evaluation
 
-refer to the corresponding subfolder [`Model Evaluation/`](./Model%20Evaluation/).
+refer to the corresponding subfolder [`Model Evaluation`](./Model%20Evaluation/).
 
 ## 📝 Citation
 
