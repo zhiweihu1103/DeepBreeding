@@ -3,13 +3,12 @@
 ## 1. Installation
 
 ```bash
-Download DeepBreeding_Model_Train.zip and extract it to the specified folder.
-cd DeepBreeding_Model_Train
-
 conda create -n deepbreeding_model_train python=3.11 -y
 conda activate deepbreeding_model_train
-
-pip install -e ".[torch,metrics]" --no-build-isolation
+git clone --depth 1 https://github.com/hiyouga/LlamaFactory.git
+cd LlamaFactory
+pip install -e .
+pip install -r requirements/metrics.txt
 ```
 
 Check whether the installation is successful:
