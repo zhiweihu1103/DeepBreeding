@@ -1,6 +1,6 @@
 # Knowledge Graph Construction 
 
-## 1. Installation
+## 1. Installation 
 
 ### create and activate the conda environment
 ```bash
