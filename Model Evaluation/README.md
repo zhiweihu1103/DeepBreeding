@@ -5,7 +5,6 @@
 ```bash
 conda create -n deepbreeding_model_evaluation python=3.11 -y
 conda activate deepbreeding_model_evaluation
-
 pip install "lm_eval[hf]"
 ```
 
