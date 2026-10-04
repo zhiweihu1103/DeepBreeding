@@ -3,13 +3,10 @@
 ## 1. Installation
 
 ```bash
-Download DeepBreeding_Model_Evaluation.zip and extract it to the specified folder.
-cd DeepBreeding_Model_Evaluation
-
 conda create -n deepbreeding_model_evaluation python=3.11 -y
 conda activate deepbreeding_model_evaluation
 
-pip install -e .
+pip install "lm_eval[hf]"
 ```
 
 List available tasks:
