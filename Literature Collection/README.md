@@ -1,7 +1,7 @@
 # Literature Collection 
 
 ## 1. Installation
-
+ 
 ```powershell
 conda create -n deepbreeding_lc python=3.12 -y
 conda activate deepbreeding_lc
